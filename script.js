@@ -1,4 +1,4 @@
-// script.js
+// script.js - Updated for MC, VF, AG questions
 document.addEventListener('DOMContentLoaded', () => {
     // --- Elementos do DOM ---
     const progressText = document.getElementById('progress-text');
@@ -23,15 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentQuestionIndex = 0;
     let score = 0;
     let quizData = []; // Array para guardar as perguntas (possivelmente embaralhadas)
-    let userAnswers = []; // Guarda { questionIndex, userAnswer, correctAnswer, isCorrect }
+    let userAnswers = []; // Guarda { questionIndex, type, questionText, [affirmations], options/tfOptions, userAnswer, correctAnswer, isCorrect }
 
     // --- Funções ---
 
     function shuffleArray(array) {
-        // Algoritmo Fisher-Yates (Knuth) Shuffle
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]]; // Troca elementos
+            [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
     }
@@ -40,106 +39,164 @@ document.addEventListener('DOMContentLoaded', () => {
         currentQuestionIndex = 0;
         score = 0;
         userAnswers = [];
-        quizData = shuffleArray([...questions]); // Cria cópia embaralhada
-        
-        // Reseta visibilidade
+        // Ensure questions are loaded before shuffling
+        if (typeof questions !== 'undefined' && questions.length > 0) {
+            quizData = shuffleArray([...questions]); // Use loaded questions
+             progressBar.max = quizData.length; // Set max progress based on actual questions loaded
+        } else {
+            console.error("Questions not loaded or empty!");
+            questionText.textContent = "Erro: Perguntas não carregadas.";
+            return; // Stop quiz if no questions
+        }
+
         quizArea.classList.remove('hidden');
         resultsArea.classList.add('hidden');
         reviewArea.classList.add('hidden');
-        
-        // Carrega a primeira pergunta
+
         loadQuestion();
     }
 
     function loadQuestion() {
-        // Desabilita o botão "Próxima" até uma opção ser selecionada
         nextBtn.disabled = true;
-        
-        // Limpa opções anteriores
-        optionsContainer.innerHTML = '';
+        optionsContainer.innerHTML = ''; // Clear previous options/affirmations
 
-        // Verifica se ainda há perguntas
         if (currentQuestionIndex < quizData.length) {
             const currentQuestion = quizData[currentQuestionIndex];
-
-            // Atualiza texto e barra de progresso
             const questionNum = currentQuestionIndex + 1;
+
+            // Update progress
             progressText.textContent = `Questão ${questionNum} de ${quizData.length}`;
             progressBar.value = questionNum;
-            progressBar.max = quizData.length; // Garante que o max está correto
+
+            // Display question number and text
             questionNumber.textContent = `Questão ${questionNum}`;
             questionText.textContent = currentQuestion.pergunta;
 
-            // Cria e adiciona as opções de resposta
-            const optionLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            currentQuestion.opcoes.forEach((option, index) => {
-                const letter = optionLetters[index];
-                const optionId = `q${currentQuestionIndex}_opt${letter}`;
-
-                const div = document.createElement('div');
-                
-                const input = document.createElement('input');
-                input.type = 'radio';
-                input.id = optionId;
-                input.name = `q${currentQuestionIndex}_options`; // Mesmo nome para o grupo
-                input.value = letter; // O valor será a letra da opção
-
-                const label = document.createElement('label');
-                label.htmlFor = optionId;
-                label.textContent = option;
-
-                // Event listener para habilitar o botão 'Próxima' ao selecionar
-                input.addEventListener('change', () => {
-                    nextBtn.disabled = false;
+            // --- Load based on question type ---
+            if (currentQuestion.tipo === 'AG') {
+                // Display affirmations for Group Affirmation questions
+                const affirmationsList = document.createElement('ol');
+                affirmationsList.classList.add('affirmations-list');
+                currentQuestion.afirmacoes.forEach(affirmation => {
+                    const li = document.createElement('li');
+                    li.textContent = affirmation;
+                    affirmationsList.appendChild(li);
                 });
+                // Insert affirmations *before* the options container within the card
+                questionText.after(affirmationsList); // Place affirmations after question text
 
-                div.appendChild(input);
-                div.appendChild(label);
-                optionsContainer.appendChild(div);
-            });
-             // Atualiza texto do botão
-             if (currentQuestionIndex === quizData.length - 1) {
+                // Load A-E options (standard MC logic)
+                createMcOptions(currentQuestion);
+
+            } else if (currentQuestion.tipo === 'VF') {
+                // Load True/False options
+                createTfOptions(currentQuestion);
+
+            } else { // Default to Multiple Choice (MC)
+                createMcOptions(currentQuestion);
+            }
+
+            // Update next button text
+            if (currentQuestionIndex === quizData.length - 1) {
                 nextBtn.textContent = 'Ver Resultado';
             } else {
                 nextBtn.textContent = 'Próxima Questão';
             }
 
         } else {
-            // Se não houver mais perguntas (caso raro de chegar aqui sem ser pelo nextBtn)
             showResults();
         }
     }
 
+    function createMcOptions(question) {
+        const optionLetters = 'ABCDE'; // Assuming max 5 options for MC/AG
+        question.opcoes.forEach((option, index) => {
+            if (index >= optionLetters.length) return; // Safety check
+            const letter = optionLetters[index];
+            const optionId = `q${currentQuestionIndex}_opt${letter}`;
+            const radioName = `q${currentQuestionIndex}_options`;
+
+            createRadioOption(letter, option, optionId, radioName);
+        });
+    }
+
+    function createTfOptions(question) {
+        const tfOptions = [ { letter: 'V', text: 'Verdadeiro' }, { letter: 'F', text: 'Falso' } ];
+        const radioName = `q${currentQuestionIndex}_options`; // Can reuse name if options are cleared
+
+        tfOptions.forEach(opt => {
+            const optionId = `q${currentQuestionIndex}_opt${opt.letter}`;
+            createRadioOption(opt.letter, opt.text, optionId, radioName);
+        });
+    }
+
+    function createRadioOption(valueLetter, labelText, optionId, radioName) {
+        const div = document.createElement('div');
+
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.id = optionId;
+        input.name = radioName;
+        input.value = valueLetter;
+
+        const label = document.createElement('label');
+        label.htmlFor = optionId;
+        label.textContent = labelText;
+
+        input.addEventListener('change', () => {
+            nextBtn.disabled = false;
+        });
+
+        div.appendChild(input);
+        div.appendChild(label);
+        optionsContainer.appendChild(div);
+    }
+
+
     function handleNextQuestion() {
-        // Encontra a resposta selecionada
         const selectedOptionInput = optionsContainer.querySelector('input[type="radio"]:checked');
-        
-        if (!selectedOptionInput) return; // Não faz nada se nada foi selecionado
+        if (!selectedOptionInput) return;
 
-        const userAnswerLetter = selectedOptionInput.value;
+        const userAnswer = selectedOptionInput.value; // 'A', 'B', 'C', 'D', 'E', 'V', or 'F'
         const currentQuestion = quizData[currentQuestionIndex];
-        const correctAnswerLetter = currentQuestion.resposta.toUpperCase();
-        const isCorrect = userAnswerLetter === correctAnswerLetter;
+        const correctAnswer = currentQuestion.resposta.toUpperCase(); // Ensure uppercase
+        const isCorrect = userAnswer === correctAnswer;
 
-        // Atualiza pontuação
         if (isCorrect) {
             score++;
         }
 
-        // Guarda a resposta do usuário para revisão
-        userAnswers.push({
-            questionIndex: currentQuestionIndex, // Guarda índice original se precisar
+        // Prepare answer data for review
+        const answerData = {
+            questionIndex: currentQuestionIndex,
+            type: currentQuestion.tipo,
             questionText: currentQuestion.pergunta,
-            options: currentQuestion.opcoes,
-            userAnswer: userAnswerLetter,
-            correctAnswer: correctAnswerLetter,
+            userAnswer: userAnswer,
+            correctAnswer: correctAnswer,
             isCorrect: isCorrect
-        });
+        };
 
-        // Avança para a próxima questão ou mostra resultados
+        // Add specific data based on type for review
+        if (currentQuestion.tipo === 'AG') {
+            answerData.affirmations = currentQuestion.afirmacoes;
+            answerData.options = currentQuestion.opcoes; // A-E descriptions
+        } else if (currentQuestion.tipo === 'VF') {
+            // Store the text for review display
+            answerData.tfOptions = { V: 'Verdadeiro', F: 'Falso' };
+        } else { // MC
+            answerData.options = currentQuestion.opcoes;
+        }
+
+        userAnswers.push(answerData);
+
+        // Move to next question or results
         currentQuestionIndex++;
-
         if (currentQuestionIndex < quizData.length) {
+            // Remove affirmations list if it exists from previous AG question
+            const oldAffirmations = quizArea.querySelector('.affirmations-list');
+             if (oldAffirmations) {
+                 oldAffirmations.remove();
+             }
             loadQuestion();
         } else {
             showResults();
@@ -149,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showResults() {
         quizArea.classList.add('hidden');
         resultsArea.classList.remove('hidden');
-        reviewArea.classList.add('hidden'); // Garante que a revisão esteja oculta
+        reviewArea.classList.add('hidden');
 
         const totalQuestions = quizData.length;
         const percentage = totalQuestions > 0 ? ((score / totalQuestions) * 100).toFixed(1) : 0;
@@ -157,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreText.textContent = `Você acertou ${score} de ${totalQuestions} questões.`;
         percentageText.textContent = `Sua pontuação: ${percentage}%`;
 
-        // Determina o nível
+        // Determine level (adjust thresholds as needed)
         let level = "Pontuação abaixo do nível Associate.";
         if (percentage >= 80) {
             level = "Nível: Master (Lembre-se que o nível Master oficial requer 2 exames especialistas)";
@@ -172,48 +229,82 @@ document.addEventListener('DOMContentLoaded', () => {
     function showReview() {
         resultsArea.classList.add('hidden');
         reviewArea.classList.remove('hidden');
-        reviewContent.innerHTML = ''; // Limpa conteúdo anterior
+        reviewContent.innerHTML = '';
 
-        const optionLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const optionLetters = 'ABCDE';
 
         userAnswers.forEach((answer, index) => {
             const reviewItem = document.createElement('div');
             reviewItem.classList.add('review-item');
 
             const questionTitle = document.createElement('p');
-            questionTitle.innerHTML = `<strong>Questão ${index + 1}:</strong> ${answer.questionText}`;
+            questionTitle.innerHTML = `<strong>Questão ${index + 1} (${answer.type}):</strong> ${answer.questionText}`;
             reviewItem.appendChild(questionTitle);
 
-            answer.options.forEach((optionText, optIndex) => {
-                 const letter = optionLetters[optIndex];
-                 const optionP = document.createElement('span'); // Usar span para ser inline block
-                 optionP.classList.add('review-option');
-                 optionP.textContent = `${letter}) ${optionText}`;
+            // --- Display based on question type ---
+            if (answer.type === 'AG') {
+                // Display affirmations
+                const affirmationsList = document.createElement('ol');
+                affirmationsList.classList.add('review-affirmations'); // Style differently if needed
+                answer.affirmations.forEach(affirmation => {
+                    const li = document.createElement('li');
+                    li.textContent = affirmation;
+                    affirmationsList.appendChild(li);
+                });
+                reviewItem.appendChild(affirmationsList);
 
-                 if (letter === answer.correctAnswer) {
-                     optionP.classList.add('correct');
-                 }
-                 if (letter === answer.userAnswer) {
-                     optionP.classList.add('user-selected');
-                      if (!answer.isCorrect) {
-                         optionP.classList.add('incorrect');
-                     }
-                 }
-                 reviewItem.appendChild(optionP);
-            });
+                // Display A-E options (MC style)
+                answer.options.forEach((optionText, optIndex) => {
+                     if (optIndex >= optionLetters.length) return;
+                     const letter = optionLetters[optIndex];
+                     createReviewOption(reviewItem, letter, optionText, answer);
+                });
+
+            } else if (answer.type === 'VF') {
+                // Display True/False options
+                 createReviewOption(reviewItem, 'V', answer.tfOptions.V, answer);
+                 createReviewOption(reviewItem, 'F', answer.tfOptions.F, answer);
+
+            } else { // MC
+                // Display A-E options
+                answer.options.forEach((optionText, optIndex) => {
+                     if (optIndex >= optionLetters.length) return;
+                     const letter = optionLetters[optIndex];
+                     createReviewOption(reviewItem, letter, optionText, answer);
+                });
+            }
 
             reviewContent.appendChild(reviewItem);
         });
     }
 
+    // Helper function for creating review options
+    function createReviewOption(container, letter, text, answerData) {
+        const optionP = document.createElement('span');
+        optionP.classList.add('review-option');
+        // For MC/AG, add letter prefix. For VF, just show text.
+        optionP.textContent = (answerData.type === 'VF') ? text : `${letter}) ${text}`;
+
+        if (letter === answerData.correctAnswer) {
+            optionP.classList.add('correct');
+        }
+        if (letter === answerData.userAnswer) {
+            optionP.classList.add('user-selected');
+            if (!answerData.isCorrect) {
+                optionP.classList.add('incorrect');
+            }
+        }
+        container.appendChild(optionP);
+    }
+
+
     // --- Event Listeners ---
     nextBtn.addEventListener('click', handleNextQuestion);
     restartBtn.addEventListener('click', startQuiz);
     reviewBtn.addEventListener('click', showReview);
-    backToResultsBtn.addEventListener('click', showResults); // Simplesmente mostra a tela de resultados novamente
+    backToResultsBtn.addEventListener('click', showResults);
     restartFromReviewBtn.addEventListener('click', startQuiz);
 
-
     // --- Iniciar o Quiz ---
-    startQuiz(); 
+    startQuiz();
 });
