@@ -1,0 +1,340 @@
+/* style.css */
+:root {
+    --primary-color: #0056b3; /* Azul DAMA */
+    --secondary-color: #f4f4f4; /* Cinza claro */
+    --correct-color: #28a745; /* Verde */
+    --incorrect-color: #dc3545; /* Vermelho */
+    --text-color: #333;
+    --border-color: #ddd;
+    --white-color: #fff;
+    --disabled-color: #ccc;
+    --hover-color: #003d80;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha no topo */
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: var(--white-color);
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Largura máxima */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+#progress-container {
+    margin-top: 10px;
+}
+
+#progress-text {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 10px;
+    appearance: none; /* Remove estilos padrão */
+    border: none;
+    border-radius: 5px;
+    overflow: hidden; /* Garante que o preenchimento fique dentro das bordas */
+}
+
+/* Estilo da barra de progresso para Webkit (Chrome, Safari) */
+#progress-bar::-webkit-progress-bar {
+    background-color: var(--border-color);
+    border-radius: 5px;
+}
+
+#progress-bar::-webkit-progress-value {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Estilo da barra de progresso para Firefox */
+#progress-bar::-moz-progress-bar {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Fallback para outros navegadores */
+#progress-bar {
+    color: var(--primary-color); /* Cor do preenchimento */
+    background-color: var(--border-color); /* Cor do fundo */
+}
+
+
+.question-card {
+    margin-bottom: 20px;
+}
+
+#question-number {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+#question-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#options-container div {
+    margin-bottom: 12px;
+}
+
+#options-container label {
+    display: block; /* Faz o label ocupar a linha toda */
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    position: relative; /* Para posicionamento do input */
+    padding-left: 40px; /* Espaço para o radio button customizado */
+}
+
+
+#options-container input[type="radio"] {
+    /* Oculta o radio button padrão, mas mantém acessível */
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    margin: -1px; /* Tira do fluxo */
+}
+
+
+/* Pseudo-elemento para o radio button customizado */
+#options-container label::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    background-color: var(--white-color);
+}
+/* Círculo interno quando selecionado */
+#options-container label::after {
+    content: '';
+    position: absolute;
+    left: 17px; /* Ajustado para centralizar no ::before */
+    top: 50%;
+    transform: translateY(-50%) scale(0); /* Começa invisível */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transition: transform 0.2s;
+}
+
+
+/* Estilo quando o radio está selecionado (checando o input real) */
+#options-container input[type="radio"]:checked + label {
+    border-color: var(--primary-color);
+    background-color: #e7f1ff; /* Azul bem claro */
+}
+#options-container input[type="radio"]:checked + label::before {
+    border-color: var(--primary-color);
+}
+#options-container input[type="radio"]:checked + label::after {
+     transform: translateY(-50%) scale(1); /* Mostra o círculo interno */
+}
+
+/* Estilo de foco para acessibilidade */
+#options-container input[type="radio"]:focus + label {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-color: var(--primary-color); /* Reforça a borda no foco */
+}
+
+#options-container label:hover {
+    background-color: #e9e9e9;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 20px;
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--hover-color);
+}
+
+button:disabled {
+    background-color: var(--disabled-color);
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+#results-area, #review-area {
+    text-align: center;
+    padding: 20px;
+}
+#results-area h2, #review-area h2{
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+#results-area p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.result-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px; /* Espaço entre botões */
+    justify-content: center;
+    flex-wrap: wrap; /* Quebra linha em telas menores */
+}
+.result-buttons button {
+    width: auto; /* Tamanho baseado no conteúdo */
+    padding: 10px 25px; /* Ajusta padding */
+}
+
+#review-content .review-item {
+    text-align: left;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: var(--white-color);
+}
+#review-content .review-item p {
+    margin-bottom: 10px;
+}
+
+#review-content .review-option {
+    display: block;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    border: 1px solid transparent; /* Para manter o layout consistente */
+}
+
+#review-content .review-option.correct {
+    background-color: #d4edda; /* Verde claro */
+    border-color: var(--correct-color);
+    color: #155724; /* Verde escuro */
+    font-weight: bold;
+}
+
+#review-content .review-option.incorrect {
+    background-color: #f8d7da; /* Vermelho claro */
+    border-color: var(--incorrect-color);
+    color: #721c24; /* Vermelho escuro */
+}
+
+#review-content .review-option.user-selected::after {
+    content: ' (Sua Resposta)';
+    font-style: italic;
+    font-size: 0.9em;
+    margin-left: 5px;
+    color: #555;
+}
+/* Ajuste específico se a correta foi selecionada pelo usuário */
+#review-content .review-option.correct.user-selected::after {
+     color: #155724; /* Verde escuro */
+}
+
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    #question-text {
+        font-size: 1.1em;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+    .result-buttons {
+        flex-direction: column; /* Empilha botões */
+    }
+     .result-buttons button {
+        width: 100%; /* Ocupa largura total */
+    }
+
+    #options-container label {
+        padding: 10px 12px;
+        padding-left: 35px; /* Ajusta espaço para radio */
+    }
+
+     #options-container label::before {
+        left: 10px;
+        width: 16px;
+        height: 16px;
+    }
+    #options-container label::after {
+         left: 14px; /* Ajustado para centralizar no ::before */
+         width: 8px;
+        height: 8px;
+    }
+}
