@@ -338,3 +338,44 @@ footer {
         height: 8px;
     }
 }
+/* Additions to style.css */
+
+/* Style for affirmations list during the quiz */
+.affirmations-list {
+    list-style-type: upper-roman; /* I, II, III... */
+    margin-left: 20px; /* Indentation */
+    margin-bottom: 15px; /* Space before options */
+    padding-left: 15px; /* Further indentation for numbers */
+    font-size: 1em; /* Adjust as needed */
+    color: #555; /* Slightly lighter text */
+}
+
+.affirmations-list li {
+    margin-bottom: 5px; /* Space between affirmations */
+}
+
+
+/* Style for affirmations list during review */
+#review-content .review-affirmations {
+     list-style-type: upper-roman;
+     margin-left: 20px;
+     margin-bottom: 10px;
+     padding-left: 15px;
+     font-size: 0.95em;
+     color: #444;
+     text-align: left; /* Ensure list is left-aligned */
+}
+#review-content .review-affirmations li {
+     margin-bottom: 4px;
+}
+
+
+/* Adjust review option text content for VF */
+#review-content .review-option.vf-option {
+    /* Maybe add specific styling if needed, but textContent change in JS handles most */
+}
+
+/* Ensure review item title indicates type */
+#review-content .review-item p strong::after {
+    /* content: ' (' attr(data-type) ')'; Can't easily use attr here, JS adds type */
+}
