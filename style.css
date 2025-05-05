@@ -1,14 +1,26 @@
 /* style.css */
 :root {
-    --primary-color: #0056b3; /* Azul DAMA */
-    --secondary-color: #f4f4f4; /* Cinza claro */
+    --primary-color: #0056b3; /* Azul */
+    --secondary-color: #f8f9fa; /* Cinza bem claro */
     --correct-color: #28a745; /* Verde */
     --incorrect-color: #dc3545; /* Vermelho */
-    --text-color: #333;
-    --border-color: #ddd;
+    --text-color: #212529; /* Cinza escuro (texto principal) */
+    --muted-text-color: #6c757d; /* Cinza médio (textos secundários) */
+    --border-color: #dee2e6; /* Cinza claro (bordas) */
     --white-color: #fff;
-    --disabled-color: #ccc;
-    --hover-color: #003d80;
+    --disabled-color: #adb5bd; /* Cinza mais claro para desabilitado */
+    --hover-color: #003d80; /* Azul mais escuro */
+    --option-bg: #e9ecef; /* Fundo das opções */
+    --option-hover-bg: #ced4da; /* Hover das opções */
+    --option-selected-bg: #cfe2ff; /* Fundo opção selecionada */
+    --option-selected-border: #0056b3;
+    --review-correct-bg: #d1e7dd;
+    --review-correct-border: #a3cfbb;
+    --review-correct-text: #0a3622;
+    --review-incorrect-bg: #f8d7da;
+    --review-incorrect-border: #f1aeb5;
+    --review-incorrect-text: #58151c;
+    --review-user-selected-text: #495057;
 }
 
 * {
@@ -18,7 +30,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
     background-color: var(--secondary-color);
     color: var(--text-color);
@@ -31,273 +43,430 @@ body {
 
 .container {
     background-color: var(--white-color);
-    padding: 20px 30px;
+    padding: 25px 35px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     width: 100%;
-    max-width: 800px; /* Largura máxima */
+    max-width: 850px; /* Aumentei um pouco */
 }
 
 header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 15px;
+    padding-bottom: 20px;
 }
 
 header h1 {
     color: var(--primary-color);
-    margin-bottom: 10px;
-    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-size: 1.9em;
+    font-weight: 600;
 }
 
+/* --- Presentation Area --- */
+#presentation-area {
+    padding: 20px 10px;
+    text-align: center;
+}
+
+#presentation-area h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+#presentation-area p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+    color: var(--muted-text-color);
+}
+#presentation-area ul {
+    list-style-position: inside; /* Posição dos marcadores */
+    text-align: left;
+    max-width: 400px; /* Limita largura da lista */
+    margin: 0 auto 20px auto; /* Centraliza lista */
+    padding-left: 20px; /* Adiciona padding para alinhar texto */
+    color: var(--text-color);
+}
+#presentation-area li {
+    margin-bottom: 5px;
+}
+
+#start-btn {
+    margin-top: 25px;
+    width: auto; /* Tamanho automático */
+    padding: 12px 35px; /* Padding horizontal maior */
+}
+
+
+/* --- Quiz Area --- */
 #progress-container {
-    margin-top: 10px;
+    margin-bottom: 20px; /* Espaço abaixo da barra */
 }
 
 #progress-text {
-    font-size: 0.9em;
-    margin-bottom: 5px;
+    font-size: 0.95em;
+    margin-bottom: 8px;
+    color: var(--muted-text-color);
+    text-align: center;
 }
 
 #progress-bar {
     width: 100%;
-    height: 10px;
-    appearance: none; /* Remove estilos padrão */
+    height: 12px;
+    appearance: none;
     border: none;
-    border-radius: 5px;
-    overflow: hidden; /* Garante que o preenchimento fique dentro das bordas */
+    border-radius: 6px;
+    overflow: hidden;
 }
 
-/* Estilo da barra de progresso para Webkit (Chrome, Safari) */
 #progress-bar::-webkit-progress-bar {
-    background-color: var(--border-color);
-    border-radius: 5px;
+    background-color: var(--option-bg);
+    border-radius: 6px;
 }
 
 #progress-bar::-webkit-progress-value {
     background-color: var(--primary-color);
-    border-radius: 5px;
-    transition: width 0.3s ease-in-out;
+    border-radius: 6px 0 0 6px; /* Arredonda só a ponta esquerda */
+    transition: width 0.4s ease;
 }
 
-/* Estilo da barra de progresso para Firefox */
 #progress-bar::-moz-progress-bar {
     background-color: var(--primary-color);
-    border-radius: 5px;
-    transition: width 0.3s ease-in-out;
+    border-radius: 6px;
+    transition: width 0.4s ease;
 }
 
-/* Fallback para outros navegadores */
 #progress-bar {
-    color: var(--primary-color); /* Cor do preenchimento */
-    background-color: var(--border-color); /* Cor do fundo */
+    color: var(--primary-color);
+    background-color: var(--option-bg);
 }
-
 
 .question-card {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 6px;
+    background-color: #fff; /* Fundo branco para o card */
 }
 
 #question-number {
     font-size: 0.9em;
-    color: #666;
+    color: var(--muted-text-color);
     margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.discipline-tag {
+    font-size: 0.85em;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block; /* Para ajustar ao conteúdo */
+    margin-bottom: 15px;
+    font-weight: 500;
 }
 
 #question-text {
     font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-weight: 500; /* Um pouco menos bold */
+    margin-bottom: 25px; /* Mais espaço antes das opções */
+    line-height: 1.5;
 }
 
+/* Style for affirmations list during the quiz */
+.affirmations-list {
+    list-style-type: upper-roman; /* I, II, III... */
+    margin-left: 5px; /* Ajuste indentação */
+    margin-bottom: 20px; /* Space before options */
+    padding-left: 25px; /* Further indentation for numbers */
+    font-size: 1em;
+    color: var(--text-color); /* Texto um pouco mais escuro */
+    line-height: 1.5;
+}
+
+.affirmations-list li {
+    margin-bottom: 8px; /* Space between affirmations */
+}
+
+
 #options-container div {
-    margin-bottom: 12px;
+    margin-bottom: 10px; /* Espaço entre opções */
 }
 
 #options-container label {
-    display: block; /* Faz o label ocupar a linha toda */
-    background-color: var(--secondary-color);
+    display: block;
+    background-color: var(--option-bg);
     border: 1px solid var(--border-color);
     padding: 12px 15px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s, border-color 0.2s;
-    position: relative; /* Para posicionamento do input */
-    padding-left: 40px; /* Espaço para o radio button customizado */
+    position: relative;
+    padding-left: 45px; /* Espaço maior para radio */
+    line-height: 1.5;
 }
 
 
 #options-container input[type="radio"] {
-    /* Oculta o radio button padrão, mas mantém acessível */
     opacity: 0;
     position: absolute;
     width: 1px;
     height: 1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
-    margin: -1px; /* Tira do fluxo */
+    margin: -1px;
 }
 
 
-/* Pseudo-elemento para o radio button customizado */
 #options-container label::before {
     content: '';
     position: absolute;
-    left: 12px;
+    left: 15px; /* Ajustado */
     top: 50%;
     transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--border-color);
+    width: 20px; /* Maior */
+    height: 20px;
+    border: 2px solid var(--muted-text-color); /* Borda mais escura */
     border-radius: 50%;
     background-color: var(--white-color);
+    transition: border-color 0.2s;
 }
-/* Círculo interno quando selecionado */
 #options-container label::after {
     content: '';
     position: absolute;
-    left: 17px; /* Ajustado para centralizar no ::before */
+    left: 20px; /* Ajustado */
     top: 50%;
-    transform: translateY(-50%) scale(0); /* Começa invisível */
-    width: 10px;
-    height: 10px;
+    transform: translateY(-50%) scale(0);
+    width: 12px; /* Maior */
+    height: 12px;
     border-radius: 50%;
     background-color: var(--primary-color);
-    transition: transform 0.2s;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); /* Efeito mais suave */
 }
 
-
-/* Estilo quando o radio está selecionado (checando o input real) */
 #options-container input[type="radio"]:checked + label {
-    border-color: var(--primary-color);
-    background-color: #e7f1ff; /* Azul bem claro */
+    border-color: var(--option-selected-border);
+    background-color: var(--option-selected-bg);
+    color: var(--primary-color); /* Cor do texto selecionado */
+    font-weight: 500;
 }
 #options-container input[type="radio"]:checked + label::before {
-    border-color: var(--primary-color);
+    border-color: var(--option-selected-border);
 }
 #options-container input[type="radio"]:checked + label::after {
-     transform: translateY(-50%) scale(1); /* Mostra o círculo interno */
+     transform: translateY(-50%) scale(1);
 }
 
-/* Estilo de foco para acessibilidade */
-#options-container input[type="radio"]:focus + label {
+#options-container input[type="radio"]:focus-visible + label { /* Usar focus-visible */
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
-    border-color: var(--primary-color); /* Reforça a borda no foco */
+    border-color: var(--primary-color);
 }
 
 #options-container label:hover {
-    background-color: #e9e9e9;
+    background-color: var(--option-hover-bg);
+    border-color: #adb5bd;
+}
+#options-container input[type="radio"]:checked + label:hover {
+    background-color: #b6d4fe; /* Hover mais claro para selecionado */
 }
 
 button {
     display: block;
     width: 100%;
-    padding: 12px 20px;
+    padding: 13px 20px; /* Um pouco maior */
     font-size: 1.1em;
+    font-weight: 600;
     color: var(--white-color);
     background-color: var(--primary-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s;
-    margin-top: 20px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    margin-top: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button:hover:not(:disabled) {
     background-color: var(--hover-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 button:disabled {
     background-color: var(--disabled-color);
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 .hidden {
     display: none;
 }
 
+/* --- Results & Review Area --- */
 #results-area, #review-area {
     text-align: center;
-    padding: 20px;
+    padding: 25px 15px;
 }
 #results-area h2, #review-area h2{
     color: var(--primary-color);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 1.7em;
 }
 
 #results-area p {
-    font-size: 1.1em;
-    margin-bottom: 10px;
+    font-size: 1.15em;
+    margin-bottom: 12px;
+}
+#percentage-text {
+    font-weight: bold;
+}
+#level-text {
+    font-style: italic;
+    color: var(--muted-text-color);
 }
 
 .result-buttons {
-    margin-top: 25px;
+    margin-top: 30px;
     display: flex;
-    gap: 15px; /* Espaço entre botões */
+    gap: 15px;
     justify-content: center;
-    flex-wrap: wrap; /* Quebra linha em telas menores */
+    flex-wrap: wrap;
 }
 .result-buttons button {
-    width: auto; /* Tamanho baseado no conteúdo */
-    padding: 10px 25px; /* Ajusta padding */
+    width: auto;
+    padding: 10px 25px;
+}
+#review-btn, #back-to-results-btn {
+    background-color: #6c757d; /* Botão secundário cinza */
+}
+#review-btn:hover:not(:disabled), #back-to-results-btn:hover:not(:disabled) {
+     background-color: #5a6268;
+}
+
+#review-content {
+    margin-top: 20px;
+    max-height: 70vh; /* Altura máxima para scroll */
+    overflow-y: auto; /* Adiciona scroll vertical */
+    padding-right: 10px; /* Espaço para a barra de rolagem */
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
 }
 
 #review-content .review-item {
     text-align: left;
     border: 1px solid var(--border-color);
-    border-radius: 5px;
-    padding: 15px;
+    border-radius: 6px;
+    padding: 15px 20px;
     margin-bottom: 20px;
     background-color: var(--white-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
-#review-content .review-item p {
-    margin-bottom: 10px;
+#review-content .review-item p:first-child { /* Estilo para a pergunta revisada */
+    margin-bottom: 15px;
+    line-height: 1.5;
+    font-size: 1.1em;
 }
+#review-content .review-item p strong {
+    color: var(--primary-color);
+}
+
+/* Estilo para afirmações na revisão */
+#review-content .review-affirmations {
+     list-style-type: upper-roman;
+     margin-left: 5px;
+     margin-bottom: 15px;
+     padding-left: 25px;
+     font-size: 0.95em;
+     color: #333; /* Texto um pouco mais escuro que o normal */
+     text-align: left;
+     line-height: 1.4;
+}
+#review-content .review-affirmations li {
+     margin-bottom: 5px;
+}
+
 
 #review-content .review-option {
     display: block;
-    padding: 8px 12px;
-    margin-bottom: 5px;
+    padding: 10px 15px; /* Padding consistente */
+    margin-bottom: 8px;
     border-radius: 4px;
-    border: 1px solid transparent; /* Para manter o layout consistente */
+    border: 1px solid var(--border-color);
+    background-color: var(--option-bg); /* Fundo padrão */
+    position: relative; /* Para o pseudo-elemento */
+    font-size: 1em;
 }
+
 
 #review-content .review-option.correct {
-    background-color: #d4edda; /* Verde claro */
-    border-color: var(--correct-color);
-    color: #155724; /* Verde escuro */
+    background-color: var(--review-correct-bg);
+    border-color: var(--review-correct-border);
+    color: var(--review-correct-text);
     font-weight: bold;
 }
-
-#review-content .review-option.incorrect {
-    background-color: #f8d7da; /* Vermelho claro */
-    border-color: var(--incorrect-color);
-    color: #721c24; /* Vermelho escuro */
+#review-content .review-option.correct::before { /* Indicador visual de resposta correta */
+    content: '✔';
+    color: var(--correct-color);
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-#review-content .review-option.user-selected::after {
-    content: ' (Sua Resposta)';
+#review-content .review-option.incorrect.user-selected {
+    background-color: var(--review-incorrect-bg);
+    border-color: var(--review-incorrect-border);
+    color: var(--review-incorrect-text);
+}
+#review-content .review-option.incorrect.user-selected::before { /* Indicador visual de resposta incorreta */
+    content: '✖';
+    color: var(--incorrect-color);
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#review-content .review-option.user-selected:not(.correct):not(.incorrect) {
+     /* Caso raro, mas adiciona borda sutil se selecionado mas não marcado */
+     border-left: 4px solid var(--muted-text-color);
+     padding-left: 11px; /* Ajusta para a borda */
+}
+
+#review-content .review-option.correct.user-selected {
+    /* Não precisa de estilo adicional se correto e selecionado, o estilo .correct já indica */
+}
+
+
+#review-content .review-option .user-answer-indicator { /* Span para o texto "(Sua Resposta)" */
     font-style: italic;
     font-size: 0.9em;
-    margin-left: 5px;
-    color: #555;
+    margin-left: 8px;
+    color: var(--review-user-selected-text);
+    font-weight: normal; /* Normaliza peso */
 }
-/* Ajuste específico se a correta foi selecionada pelo usuário */
-#review-content .review-option.correct.user-selected::after {
-     color: #155724; /* Verde escuro */
+#review-content .review-option.correct .user-answer-indicator {
+     color: var(--review-correct-text); /* Cor do indicador consistente com fundo */
 }
-
-
-footer {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 0.9em;
-    color: #777;
+#review-content .review-option.incorrect.user-selected .user-answer-indicator {
+     color: var(--review-incorrect-text); /* Cor do indicador consistente com fundo */
 }
 
-/* Media Queries para Responsividade */
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    header h1 {
+        font-size: 1.7em;
+    }
+}
+
 @media (max-width: 600px) {
     .container {
         padding: 15px;
@@ -311,71 +480,46 @@ footer {
         font-size: 1.1em;
     }
 
+     .discipline-tag {
+         font-size: 0.8em;
+         margin-bottom: 10px;
+     }
+
     button {
         font-size: 1em;
-        padding: 10px 15px;
+        padding: 12px 18px;
     }
     .result-buttons {
         flex-direction: column; /* Empilha botões */
     }
      .result-buttons button {
-        width: 100%; /* Ocupa largura total */
+        width: 100%;
     }
 
     #options-container label {
         padding: 10px 12px;
-        padding-left: 35px; /* Ajusta espaço para radio */
+        padding-left: 40px; /* Ajusta espaço para radio */
     }
 
      #options-container label::before {
-        left: 10px;
-        width: 16px;
-        height: 16px;
+        left: 12px; /* Ajusta */
+        width: 18px;
+        height: 18px;
     }
     #options-container label::after {
-         left: 14px; /* Ajustado para centralizar no ::before */
-         width: 8px;
-        height: 8px;
+         left: 16px; /* Ajusta */
+         width: 10px;
+        height: 10px;
     }
-}
-/* Additions to style.css */
 
-/* Style for affirmations list during the quiz */
-.affirmations-list {
-    list-style-type: upper-roman; /* I, II, III... */
-    margin-left: 20px; /* Indentation */
-    margin-bottom: 15px; /* Space before options */
-    padding-left: 15px; /* Further indentation for numbers */
-    font-size: 1em; /* Adjust as needed */
-    color: #555; /* Slightly lighter text */
-}
-
-.affirmations-list li {
-    margin-bottom: 5px; /* Space between affirmations */
-}
-
-
-/* Style for affirmations list during review */
-#review-content .review-affirmations {
-     list-style-type: upper-roman;
-     margin-left: 20px;
-     margin-bottom: 10px;
-     padding-left: 15px;
-     font-size: 0.95em;
-     color: #444;
-     text-align: left; /* Ensure list is left-aligned */
-}
-#review-content .review-affirmations li {
-     margin-bottom: 4px;
-}
-
-
-/* Adjust review option text content for VF */
-#review-content .review-option.vf-option {
-    /* Maybe add specific styling if needed, but textContent change in JS handles most */
-}
-
-/* Ensure review item title indicates type */
-#review-content .review-item p strong::after {
-    /* content: ' (' attr(data-type) ')'; Can't easily use attr here, JS adds type */
+    #review-content .review-item {
+        padding: 12px 15px;
+    }
+     #review-content .review-option::before { /* Move indicador para a esquerda */
+         left: 15px;
+         right: auto;
+     }
+     #review-content .review-option {
+          padding-left: 40px; /* Adiciona espaço à esquerda para indicador */
+     }
 }
