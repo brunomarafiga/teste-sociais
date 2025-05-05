@@ -3,23 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de conceitos de gestão de projetos</title>
+    <title>Exame Simulado - Ciências Sociais</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Teste de conceitos de gestão de projetos</h1>
+            <h1>Exame Simulado - Ciências Sociais (100 Questões)</h1>
+        </header>
+
+        <section id="presentation-area">
+            <h2>Bem-vindo ao Simulado!</h2>
+            <p>Este simulado contém 100 questões abrangendo as disciplinas de:</p>
+            <ul>
+                <li>Antropologia (20)</li>
+                <li>Economia (10)</li>
+                <li>Epistemologia (10)</li>
+                <li>Ciência Política (20)</li>
+                <li>Psicologia Social (10)</li>
+                <li>Sociologia (20)</li>
+                <li>Geografia Humana (10)</li>
+            </ul>
+            <p>As questões são de múltipla escolha (MC), verdadeiro/falso (VF) ou análise de afirmações em grupo (AG).</p>
+            <p>Prepare-se e boa sorte!</p>
+            <button id="start-btn">Iniciar Teste</button>
+        </section>
+
+        <main id="quiz-area" class="hidden">
             <div id="progress-container">
                 <p id="progress-text">Questão 1 de 100</p>
                 <progress id="progress-bar" value="0" max="100"></progress>
             </div>
-        </header>
-
-        <main id="quiz-area">
             <section class="question-card">
                 <h2 id="question-number">Questão 1</h2>
+                 <p id="question-discipline" class="discipline-tag">Disciplina: Carregando...</p> <!-- Added for discipline -->
                 <p id="question-text">Carregando pergunta...</p>
+                 <!-- Affirmations list will be inserted here by JS if type is AG -->
                 <div id="options-container" role="radiogroup" aria-labelledby="question-text">
                     <!-- Opções serão carregadas aqui pelo JavaScript -->
                 </div>
@@ -51,10 +70,8 @@
 
     </div>
 
-  
-
-    <!-- Carrega as perguntas primeiro -->
-    <script src="questions.js"></script> 
+    <!-- Carrega as perguntas PRIMEIRO -->
+    <script src="questions.js"></script>
     <!-- Depois carrega a lógica do quiz -->
     <script src="script.js"></script>
 </body>
