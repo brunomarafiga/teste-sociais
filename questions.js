@@ -1,4 +1,4 @@
-```javascript
+
 // questions.js (Corrected Version - Duplicates Removed)
 
 const questions = [
@@ -1736,5 +1736,4 @@ const questions = [
         ],
         resposta: "D"
     }
-];
-```
+]
