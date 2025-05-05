@@ -1,4 +1,3 @@
-
 // questions.js (Corrected Version - Duplicates Removed)
 
 const questions = [
@@ -45,7 +44,14 @@ const questions = [
         disciplina: "Antropologia",
         tipo: "VF", // Verdadeiro/Falso
         contexto: "Povos indígenas da Amazônia frequentemente descrevem encontros com seres não-humanos (animais, espíritos) que se veem a si mesmos como humanos e percebem os humanos como predadores ou presas. Tais narrativas desafiam pressupostos ontológicos ocidentais sobre a distinção entre natureza e cultura, humanidade e animalidade.",
-        pergunta: "Com base na teoria do perspectivismo ameríndio, desenvolvida por Eduardo Viveiros de Castro, julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):\n\n( ) O perspectivismo propõe que diversos seres (humanos, animais, espíritos) compartilham uma mesma \"cultura\" ou subjetividade, diferindo quanto a seus \"corpos\" ou naturezas, invertendo assim o multiculturalismo ocidental.\n( ) Para Viveiros de Castro, o xamanismo amazônico pode ser compreendido como uma prática de \"tradução\" entre diferentes perspectivas ontológicas, permitindo a comunicação entre mundos humanos e não-humanos.\n( ) A teoria perspectivista é incompatível com o estruturalismo lévi-straussiano, rejeitando completamente a análise de oposições binárias como natureza/cultura em favor de um relativismo radical.\n( ) Segundo o perspectivismo ameríndio, a capacidade de assumir uma perspectiva (ponto de vista) é uma propriedade exclusiva dos seres humanos biológicos, negada a animais e outros seres.\n( ) O perspectivismo ameríndio desafia o conceito antropológico clássico de relativismo cultural ao propor uma instabilidade ontológica onde as categorias \"humano\" e \"não-humano\" não são fixas, mas posicionais e relacionais.",
+        pergunta: "Com base na teoria do perspectivismo ameríndio, desenvolvida por Eduardo Viveiros de Castro, julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "O perspectivismo propõe que diversos seres (humanos, animais, espíritos) compartilham uma mesma \"cultura\" ou subjetividade, diferindo quanto a seus \"corpos\" ou naturezas, invertendo assim o multiculturalismo ocidental.",
+            "Para Viveiros de Castro, o xamanismo amazônico pode ser compreendido como uma prática de \"tradução\" entre diferentes perspectivas ontológicas, permitindo a comunicação entre mundos humanos e não-humanos.",
+            "A teoria perspectivista é incompatível com o estruturalismo lévi-straussiano, rejeitando completamente a análise de oposições binárias como natureza/cultura em favor de um relativismo radical.",
+            "Segundo o perspectivismo ameríndio, a capacidade de assumir uma perspectiva (ponto de vista) é uma propriedade exclusiva dos seres humanos biológicos, negada a animais e outros seres.",
+            "O perspectivismo ameríndio desafia o conceito antropológico clássico de relativismo cultural ao propor uma instabilidade ontológica onde as categorias \"humano\" e \"não-humano\" não são fixas, mas posicionais e relacionais."
+        ],
         opcoes: [
             "V, V, F, F, V",
             "F, F, V, V, F",
@@ -127,7 +133,14 @@ const questions = [
         disciplina: "Antropologia",
         tipo: "VF", // Verdadeiro/Falso
         contexto: "No final do século XIX, antropólogos como Lewis Henry Morgan e Edward Tylor propuseram teorias evolucionistas que classificavam sociedades em estágios de desenvolvimento (selvageria, barbárie, civilização). Estas teorias influenciaram políticas coloniais e justificavam hierarquias raciais, sendo posteriormente criticadas por antropólogos como Franz Boas.",
-        pergunta: "Sobre a crítica boasiana ao evolucionismo antropológico, julgue os itens como verdadeiros (V) ou falsos (F):\n\n( ) Franz Boas contestou o método comparativo dos evolucionistas, que agrupava traços culturais descontextualizados de diferentes sociedades para construir sequências evolutivas especulativas.\n( ) A crítica de Boas ao evolucionismo baseava-se no particularismo histórico, que enfatizava a necessidade de estudar cada cultura em seus próprios termos e contexto histórico específico.\n( ) Boas rejeitou completamente a noção de evolução cultural, negando qualquer possibilidade de mudança ou desenvolvimento nas sociedades humanas ao longo do tempo.\n( ) Os estudos empíricos de Boas sobre plasticidade craniana e desenvolvimento infantil em diferentes grupos étnicos contribuíram para desafiar teorias raciais deterministas que fundamentavam muitas abordagens evolucionistas.\n( ) O relativismo cultural desenvolvido na tradição boasiana era compatível com o racismo científico da época, pois ambos postulavam diferenças inatas e hierárquicas entre grupos humanos.",
+        pergunta: "Sobre a crítica boasiana ao evolucionismo antropológico, julgue os itens como verdadeiros (V) ou falsos (F):",
+        vfStatements: [
+            "Franz Boas contestou o método comparativo dos evolucionistas, que agrupava traços culturais descontextualizados de diferentes sociedades para construir sequências evolutivas especulativas.",
+            "A crítica de Boas ao evolucionismo baseava-se no particularismo histórico, que enfatizava a necessidade de estudar cada cultura em seus próprios termos e contexto histórico específico.",
+            "Boas rejeitou completamente a noção de evolução cultural, negando qualquer possibilidade de mudança ou desenvolvimento nas sociedades humanas ao longo do tempo.",
+            "Os estudos empíricos de Boas sobre plasticidade craniana e desenvolvimento infantil em diferentes grupos étnicos contribuíram para desafiar teorias raciais deterministas que fundamentavam muitas abordagens evolucionistas.",
+            "O relativismo cultural desenvolvido na tradição boasiana era compatível com o racismo científico da época, pois ambos postulavam diferenças inatas e hierárquicas entre grupos humanos."
+        ],
         opcoes: [
             "V, V, F, V, F",
             "F, V, V, F, V",
@@ -179,7 +192,14 @@ const questions = [
         disciplina: "Antropologia",
         tipo: "VF",
         contexto: "A antropologia como disciplina acadêmica desenvolveu-se no contexto da expansão colonial europeia, gerando debates sobre a cumplicidade da disciplina com projetos imperiais. Nas últimas décadas, antropólogos têm revisitado criticamente essa história, propondo perspectivas decoloniais que reconhecem e desafiam legados coloniais na produção de conhecimento antropológico.",
-        pergunta: "Sobre a relação entre antropologia e colonialismo, julgue as afirmações abaixo como verdadeiras (V) ou falsas (F):\n\n( ) Talal Asad, em \"Anthropology and the Colonial Encounter\", argumenta que, mesmo quando antropólogos individuais se opunham ao colonialismo, a disciplina como instituição estava estruturalmente implicada nas relações de poder coloniais.\n( ) A antropologia aplicada colonial, desenvolvida por administradores como Malinowski na África britânica, representou uma ruptura radical com o colonialismo, estabelecendo desde o início uma abordagem emancipatória e anti-imperialista.\n( ) O conceito de \"colonialidade do saber\", desenvolvido por Aníbal Quijano, refere-se à persistência de hierarquias epistemológicas coloniais mesmo após o fim do colonialismo formal, privilegiando conhecimentos ocidentais sobre saberes indígenas e não-ocidentais.\n( ) A crítica pós-colonial à antropologia, exemplificada por autores como Edward Said, questiona a autoridade etnográfica tradicional e as representações ocidentais do \"outro\" não-ocidental como primitivo, exótico ou atrasado.\n( ) Johannes Fabian, em \"O Tempo e o Outro\", demonstra como a antropologia clássica frequentemente colocava seus objetos de estudo em um \"tempo diferente\" (alocronismo), negando contemporaneidade aos povos estudados e posicionando-os como relíquias de estágios anteriores da evolução humana.",
+        pergunta: "Sobre a relação entre antropologia e colonialismo, julgue as afirmações abaixo como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "Talal Asad, em \"Anthropology and the Colonial Encounter\", argumenta que, mesmo quando antropólogos individuais se opunham ao colonialismo, a disciplina como instituição estava estruturalmente implicada nas relações de poder coloniais.",
+            "A antropologia aplicada colonial, desenvolvida por administradores como Malinowski na África britânica, representou uma ruptura radical com o colonialismo, estabelecendo desde o início uma abordagem emancipatória e anti-imperialista.",
+            "O conceito de \"colonialidade do saber\", desenvolvido por Aníbal Quijano, refere-se à persistência de hierarquias epistemológicas coloniais mesmo após o fim do colonialismo formal, privilegiando conhecimentos ocidentais sobre saberes indígenas e não-ocidentais.",
+            "A crítica pós-colonial à antropologia, exemplificada por autores como Edward Said, questiona a autoridade etnográfica tradicional e as representações ocidentais do \"outro\" não-ocidental como primitivo, exótico ou atrasado.",
+            "Johannes Fabian, em \"O Tempo e o Outro\", demonstra como a antropologia clássica frequentemente colocava seus objetos de estudo em um \"tempo diferente\" (alocronismo), negando contemporaneidade aos povos estudados e posicionando-os como relíquias de estágios anteriores da evolução humana."
+        ],
         opcoes: [
             "V, F, V, V, V",
             "F, V, F, V, F",
@@ -268,7 +288,14 @@ const questions = [
         disciplina: "Antropologia",
         tipo: "VF",
         contexto: "O uso de imagens na antropologia tem uma longa história, desde as fotografias coloniais até o cinema etnográfico e, mais recentemente, metodologias participativas que fornecem câmeras a membros das comunidades estudadas. O projeto \"Vídeo nas Aldeias\", desenvolvido no Brasil desde 1986, tem capacitado cineastas indígenas a produzirem seus próprios filmes, gerando um rico acervo de narrativas visuais autorepresentativas.",
-        pergunta: "Sobre antropologia visual e suas abordagens metodológicas, julgue os itens como verdadeiros (V) ou falsos (F):\n\n( ) Jean Rouch, pioneiro do cinema etnográfico, desenvolveu a abordagem da \"antropologia compartilhada\", reconhecendo os sujeitos filmados como colaboradores ativos no processo cinematográfico e explorando a reflexividade e a intersubjetividade na produção de conhecimento antropológico.\n( ) A fotografia e o filme etnográficos são valorizados na antropologia contemporânea exclusivamente como técnicas de registro objetivo da realidade cultural, sendo considerados superiores aos métodos textuais justamente por eliminarem a subjetividade e interpretação do pesquisador.\n( ) Margaret Mead e Gregory Bateson, em seu trabalho pioneiro \"Balinese Character\", demonstraram como a análise sistemática de fotografias poderia revelar padrões comportamentais e relações sociais não facilmente captáveis apenas pela observação não mediada ou descrição textual.\n( ) A antropologia visual participativa, que fornece tecnologias de imagem às comunidades estudadas, fundamenta-se no reconhecimento de que diferentes grupos culturais podem ter formas distintas de visualidade e representação, resultando em produções visuais que refletem epistemologias e estéticas próprias.\n( ) David MacDougall argumenta que o conhecimento visual antropológico é meramente ilustrativo de conceitos desenvolvidos textualmente, não constituindo uma forma distinta de conhecimento com potencial para transformar a teoria antropológica.",
+        pergunta: "Sobre antropologia visual e suas abordagens metodológicas, julgue os itens como verdadeiros (V) ou falsos (F):",
+        vfStatements: [
+            "Jean Rouch, pioneiro do cinema etnográfico, desenvolveu a abordagem da \"antropologia compartilhada\", reconhecendo os sujeitos filmados como colaboradores ativos no processo cinematográfico e explorando a reflexividade e a intersubjetividade na produção de conhecimento antropológico.",
+            "A fotografia e o filme etnográficos são valorizados na antropologia contemporânea exclusivamente como técnicas de registro objetivo da realidade cultural, sendo considerados superiores aos métodos textuais justamente por eliminarem a subjetividade e interpretação do pesquisador.",
+            "Margaret Mead e Gregory Bateson, em seu trabalho pioneiro \"Balinese Character\", demonstraram como a análise sistemática de fotografias poderia revelar padrões comportamentais e relações sociais não facilmente captáveis apenas pela observação não mediada ou descrição textual.",
+            "A antropologia visual participativa, que fornece tecnologias de imagem às comunidades estudadas, fundamenta-se no reconhecimento de que diferentes grupos culturais podem ter formas distintas de visualidade e representação, resultando em produções visuais que refletem epistemologias e estéticas próprias.",
+            "David MacDougall argumenta que o conhecimento visual antropológico é meramente ilustrativo de conceitos desenvolvidos textualmente, não constituindo uma forma distinta de conhecimento com potencial para transformar a teoria antropológica."
+        ],
         opcoes: [
             "V, F, V, V, F",
             "F, V, F, V, V",
@@ -320,7 +347,14 @@ const questions = [
         disciplina: "Antropologia",
         tipo: "VF",
         contexto: "Plataformas como TikTok, Instagram e Twitter tornaram-se não apenas espaços de interação social, mas também campos etnográficos importantes. Estudos recentes têm analisado como comunidades online desenvolvem normas próprias, linguagens especializadas, rituais digitais e formas de sociabilidade específicas, desafiando distinções tradicionais entre mundos \"real\" e \"virtual\".",
-        pergunta: "Considerando os desenvolvimentos teóricos da antropologia digital, julgue as afirmações como verdadeiras (V) ou falsas (F):\n\n( ) A antropologia digital, conforme proposta por Daniel Miller e Heather Horst, não se limita a estudar tecnologias digitais como objetos, mas compreende o digital como constitutivo de grande parte da vida cultural contemporânea, exigindo métodos etnográficos adaptados.\n( ) Tom Boellstorff, em seu estudo etnográfico sobre o Second Life (\"Coming of Age in Second Life\"), demonstra que ambientes virtuais simplesmente reproduzem estruturas sociais do mundo físico, sem desenvolver culturalidades ou sociabilidades específicas ao meio digital.\n( ) O conceito de \"materialidade digital\", central na antropologia digital contemporânea, reconhece que tecnologias digitais não são meramente virtuais ou imateriais, mas possuem materialidades específicas que condicionam práticas, relações e experiências.\n( ) A etnografia digital, segundo Christine Hine, deve analisar o online e o offline como esferas completamente separadas e autônomas, evitando qualquer abordagem que considere sua interconexão ou coprodução mútua na vida cotidiana.\n( ) A corrente teórica dominante na antropologia digital argumenta que comunidades online são necessariamente menos \"reais\" ou significativas que comunidades baseadas em território físico compartilhado, constituindo apenas simulacros empobrecidos de sociabilidade autêntica.",
+        pergunta: "Considerando os desenvolvimentos teóricos da antropologia digital, julgue as afirmações como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "A antropologia digital, conforme proposta por Daniel Miller e Heather Horst, não se limita a estudar tecnologias digitais como objetos, mas compreende o digital como constitutivo de grande parte da vida cultural contemporânea, exigindo métodos etnográficos adaptados.",
+            "Tom Boellstorff, em seu estudo etnográfico sobre o Second Life (\"Coming of Age in Second Life\"), demonstra que ambientes virtuais simplesmente reproduzem estruturas sociais do mundo físico, sem desenvolver culturalidades ou sociabilidades específicas ao meio digital.",
+            "O conceito de \"materialidade digital\", central na antropologia digital contemporânea, reconhece que tecnologias digitais não são meramente virtuais ou imateriais, mas possuem materialidades específicas que condicionam práticas, relações e experiências.",
+            "A etnografia digital, segundo Christine Hine, deve analisar o online e o offline como esferas completamente separadas e autônomas, evitando qualquer abordagem que considere sua interconexão ou coprodução mútua na vida cotidiana.",
+            "A corrente teórica dominante na antropologia digital argumenta que comunidades online são necessariamente menos \"reais\" ou significativas que comunidades baseadas em território físico compartilhado, constituindo apenas simulacros empobrecidos de sociabilidade autêntica."
+        ],
         opcoes: [
             "V, F, V, F, F",
             "F, V, F, V, V",
@@ -389,7 +423,14 @@ const questions = [
         disciplina: "Economia",
         tipo: "VF",
         contexto: "Após a Segunda Guerra Mundial, o debate sobre desenvolvimento econômico ganhou centralidade, especialmente na América Latina. Enquanto teorias convencionais viam o subdesenvolvimento como estágio transitório, teorias críticas como a Teoria da Dependência e a Análise do Sistema-Mundo propunham explicações estruturais para as desigualdades globais persistentes.",
-        pergunta: "Julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):\n\n( ) A Teoria da Dependência, desenvolvida por autores como Raúl Prebisch e Celso Furtado, argumenta que o subdesenvolvimento não é uma etapa prévia ao desenvolvimento, mas resultado histórico das relações econômicas internacionais desiguais.\n( ) A análise do Sistema-Mundo, proposta por Immanuel Wallerstein, divide a economia global em centro, semiperiferia e periferia, sustentando que estas posições estruturais determinam as possibilidades de desenvolvimento econômico das nações.\n( ) A Teoria da Modernização, defendida por W.W. Rostow, propõe que todos os países seguem as mesmas etapas lineares de desenvolvimento, sendo o subdesenvolvimento apenas um estágio temporário que será superado pela industrialização.\n( ) Teóricos da dependência como Fernando Henrique Cardoso desenvolveram o conceito de \"desenvolvimento dependente-associado\", reconhecendo possibilidades limitadas de desenvolvimento capitalista na periferia, ainda que em condições de dependência estrutural.\n( ) A Análise do Sistema-Mundo considera que a mobilidade de países entre centro e periferia é impossível, estabelecendo posições fixas e imutáveis na hierarquia econômica global.",
+        pergunta: "Julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "A Teoria da Dependência, desenvolvida por autores como Raúl Prebisch e Celso Furtado, argumenta que o subdesenvolvimento não é uma etapa prévia ao desenvolvimento, mas resultado histórico das relações econômicas internacionais desiguais.",
+            "A análise do Sistema-Mundo, proposta por Immanuel Wallerstein, divide a economia global em centro, semiperiferia e periferia, sustentando que estas posições estruturais determinam as possibilidades de desenvolvimento econômico das nações.",
+            "A Teoria da Modernização, defendida por W.W. Rostow, propõe que todos os países seguem as mesmas etapas lineares de desenvolvimento, sendo o subdesenvolvimento apenas um estágio temporário que será superado pela industrialização.",
+            "Teóricos da dependência como Fernando Henrique Cardoso desenvolveram o conceito de \"desenvolvimento dependente-associado\", reconhecendo possibilidades limitadas de desenvolvimento capitalista na periferia, ainda que em condições de dependência estrutural.",
+            "A Análise do Sistema-Mundo considera que a mobilidade de países entre centro e periferia é impossível, estabelecendo posições fixas e imutáveis na hierarquia econômica global."
+        ],
         opcoes: [
             "V, V, V, V, F",
             "F, V, F, V, V",
@@ -456,7 +497,14 @@ const questions = [
         disciplina: "Economia",
         tipo: "VF",
         contexto: "Além das correntes dominantes, economistas heterodoxos têm oferecido contribuições importantes para compreender fenômenos como desigualdade, desenvolvimento sustentável e alternativas ao modelo econômico convencional. Essas abordagens ganharam relevância especial após a crise financeira de 2008, que expôs limitações dos modelos econômicos ortodoxos.",
-        pergunta: "Julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):\n\n( ) Amartya Sen propôs uma abordagem do desenvolvimento como liberdade, enfatizando capacidades humanas e funcionamentos como métricas mais adequadas de bem-estar do que indicadores puramente monetários como PIB.\n( ) Thomas Piketty, em \"O Capital no Século XXI\", demonstra empiricamente como a taxa de retorno do capital tende a superar a taxa de crescimento econômico (r > g), gerando concentração crescente de riqueza quando não contrabalançada por políticas redistributivas.\n( ) Elinor Ostrom, primeira mulher a receber o Prêmio Nobel de Economia, demonstrou a inviabilidade absoluta da gestão de bens comuns por comunidades locais, defendendo privatização ou controle estatal como únicas soluções para a \"tragédia dos comuns\".\n( ) A economia feminista, representada por autoras como Marilyn Waring, critica a invisibilidade do trabalho doméstico não remunerado nas contas nacionais e teorias econômicas convencionais, propondo abordagens que reconheçam a economia do cuidado.\n( ) Kate Raworth, com seu modelo de \"Economia Donut\", propõe uma visão econômica que busca equilibrar as necessidades humanas básicas (limite interno) com os limites planetários ecológicos (limite externo), criticando a fixação no crescimento econômico ilimitado.",
+        pergunta: "Julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "Amartya Sen propôs uma abordagem do desenvolvimento como liberdade, enfatizando capacidades humanas e funcionamentos como métricas mais adequadas de bem-estar do que indicadores puramente monetários como PIB.",
+            "Thomas Piketty, em \"O Capital no Século XXI\", demonstra empiricamente como a taxa de retorno do capital tende a superar a taxa de crescimento econômico (r > g), gerando concentração crescente de riqueza quando não contrabalançada por políticas redistributivas.",
+            "Elinor Ostrom, primeira mulher a receber o Prêmio Nobel de Economia, demonstrou a inviabilidade absoluta da gestão de bens comuns por comunidades locais, defendendo privatização ou controle estatal como únicas soluções para a \"tragédia dos comuns\".",
+            "A economia feminista, representada por autoras como Marilyn Waring, critica a invisibilidade do trabalho doméstico não remunerado nas contas nacionais e teorias econômicas convencionais, propondo abordagens que reconheçam a economia do cuidado.",
+            "Kate Raworth, com seu modelo de \"Economia Donut\", propõe uma visão econômica que busca equilibrar as necessidades humanas básicas (limite interno) com os limites planetários ecológicos (limite externo), criticando a fixação no crescimento econômico ilimitado."
+        ],
         opcoes: [
             "V, V, F, V, V",
             "V, F, V, F, V",
@@ -508,7 +556,14 @@ const questions = [
         disciplina: "Economia",
         tipo: "VF",
         contexto: "Após a crise financeira global de 2008, intensificaram-se as críticas à economia neoclássica, questionando sua capacidade de prever crises e oferecer respostas adequadas a problemas econômicos contemporâneos. Movimentos como Rethinking Economics e Institute for New Economic Thinking têm promovido pluralismo teórico e metodológico nas ciências econômicas.",
-        pergunta: "Sobre as críticas à economia neoclássica, julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):\n\n( ) A crítica pós-keynesiana argumenta que a economia neoclássica subestima a incerteza fundamental presente nas decisões econômicas, tratando risco probabilístico e incerteza não-quantificável como equivalentes.\n( ) A economia comportamental, representada por pesquisadores como Daniel Kahneman e Richard Thaler, demonstra experimentalmente como agentes econômicos reais frequentemente violam pressupostos de racionalidade da teoria neoclássica.\n( ) A crítica ecológica à economia neoclássica aponta como esta trata recursos naturais e serviços ecossistêmicos como substituíveis por capital produzido pelo homem, ignorando limites biofísicos e termodinâmicos do crescimento econômico.\n( ) Economistas institucionalistas criticam a abstração da teoria neoclássica em relação a instituições, normas sociais e relações de poder que estruturam mercados reais.\n( ) A abordagem neoclássica tem demonstrado sucesso consistente na previsão de crises financeiras sistêmicas, graças a seus modelos de equilíbrio geral que incorporam plenamente a instabilidade inerente aos mercados financeiros.",
+        pergunta: "Sobre as críticas à economia neoclássica, julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "A crítica pós-keynesiana argumenta que a economia neoclássica subestima a incerteza fundamental presente nas decisões econômicas, tratando risco probabilístico e incerteza não-quantificável como equivalentes.",
+            "A economia comportamental, representada por pesquisadores como Daniel Kahneman e Richard Thaler, demonstra experimentalmente como agentes econômicos reais frequentemente violam pressupostos de racionalidade da teoria neoclássica.",
+            "A crítica ecológica à economia neoclássica aponta como esta trata recursos naturais e serviços ecossistêmicos como substituíveis por capital produzido pelo homem, ignorando limites biofísicos e termodinâmicos do crescimento econômico.",
+            "Economistas institucionalistas criticam a abstração da teoria neoclássica em relação a instituições, normas sociais e relações de poder que estruturam mercados reais.",
+            "A abordagem neoclássica tem demonstrado sucesso consistente na previsão de crises financeiras sistêmicas, graças a seus modelos de equilíbrio geral que incorporam plenamente a instabilidade inerente aos mercados financeiros."
+        ],
         opcoes: [
             "V, V, V, V, F",
             "F, V, F, V, V",
@@ -562,7 +617,14 @@ const questions = [
         disciplina: "Epistemologia",
         tipo: "VF",
         contexto: "A noção de paradigma, desenvolvida por Thomas Kuhn em \"A Estrutura das Revoluções Científicas\" (1962), tem sido aplicada e debatida nas ciências sociais, gerando discussões sobre sua adequação para compreender o desenvolvimento do conhecimento em campos como sociologia, antropologia e ciência política.",
-        pergunta: "Julgue as afirmações a seguir sobre a aplicabilidade do conceito kuhniano de paradigma às ciências sociais:\n\n( ) Diferentemente das ciências naturais, as ciências sociais são caracterizadas pelo que Robert Merton chamou de \"pluralismo teórico\", com múltiplos paradigmas coexistindo simultaneamente, o que problematiza a noção kuhniana de paradigma dominante e revolução científica.\n( ) Segundo Kuhn, as ciências sociais ainda não alcançaram o status de ciência normal por não possuírem um paradigma unificador, permanecendo em estágio pré-paradigmático caracterizado por debates sobre fundamentos.\n( ) A incomensurabilidade entre paradigmas, conceito central na teoria kuhniana, implica impossibilidade de tradução completa entre diferentes estruturas conceituais, o que explica parcialmente a dificuldade de comunicação entre diferentes tradições teóricas nas ciências sociais.\n( ) Na perspectiva kuhniana, exemplares (exemplos compartilhados de resolução de problemas) são tão importantes quanto generalizações simbólicas na constituição de paradigmas, o que tem implicações para compreender como estudos de caso exemplares funcionam nas ciências sociais.\n( ) A teoria dos paradigmas de Kuhn é completamente inaplicável às ciências sociais, pois estas lidam com fenômenos históricos, culturalmente situados e não generalizáveis, diferentemente das ciências naturais que tratam de fenômenos universais.",
+        pergunta: "Julgue as afirmações a seguir sobre a aplicabilidade do conceito kuhniano de paradigma às ciências sociais:",
+        vfStatements: [
+            "Diferentemente das ciências naturais, as ciências sociais são caracterizadas pelo que Robert Merton chamou de \"pluralismo teórico\", com múltiplos paradigmas coexistindo simultaneamente, o que problematiza a noção kuhniana de paradigma dominante e revolução científica.",
+            "Segundo Kuhn, as ciências sociais ainda não alcançaram o status de ciência normal por não possuírem um paradigma unificador, permanecendo em estágio pré-paradigmático caracterizado por debates sobre fundamentos.",
+            "A incomensurabilidade entre paradigmas, conceito central na teoria kuhniana, implica impossibilidade de tradução completa entre diferentes estruturas conceituais, o que explica parcialmente a dificuldade de comunicação entre diferentes tradições teóricas nas ciências sociais.",
+            "Na perspectiva kuhniana, exemplares (exemplos compartilhados de resolução de problemas) são tão importantes quanto generalizações simbólicas na constituição de paradigmas, o que tem implicações para compreender como estudos de caso exemplares funcionam nas ciências sociais.",
+            "A teoria dos paradigmas de Kuhn é completamente inaplicável às ciências sociais, pois estas lidam com fenômenos históricos, culturalmente situados e não generalizáveis, diferentemente das ciências naturais que tratam de fenômenos universais."
+        ],
         opcoes: [
             "V, V, V, V, F",
             "V, F, V, V, F",
@@ -629,7 +691,14 @@ const questions = [
         disciplina: "Epistemologia",
         tipo: "VF",
         contexto: "Os conceitos de validade (grau em que uma medida ou observação representa adequadamente o fenômeno que pretende captar) e confiabilidade (consistência ou estabilidade de resultados em repetidas observações) são fundamentais para avaliar o rigor científico na pesquisa social, embora sejam conceitualizados diferentemente em tradições metodológicas distintas.",
-        pergunta: "Julgue as afirmações a seguir sobre validade e confiabilidade na pesquisa social:\n\n( ) Enquanto a tradição quantitativa enfatiza validade interna, validade externa, validade de construto e confiabilidade estatística, pesquisadores qualitativos frequentemente propõem critérios alternativos como credibilidade, transferibilidade, dependabilidade e confirmabilidade (Lincoln e Guba).\n( ) A triangulação metodológica (uso de múltiplos métodos para estudar um mesmo fenômeno) contribui potencialmente para a validade da pesquisa ao corroborar resultados por diferentes vias, mas não garante automaticamente maior validade se os diferentes métodos compartilharem os mesmos vieses.\n( ) A validade ecológica refere-se ao grau em que descobertas científicas são aplicáveis ao mundo social real, para além de ambientes artificiais ou controlados de pesquisa, sendo particularmente relevante para estudos experimentais nas ciências sociais.\n( ) A reflexividade, processo pelo qual pesquisadores examinam criticamente como sua posição social, pressupostos e decisões metodológicas influenciam a pesquisa, é irrelevante para questões de validade na pesquisa social qualitativa.\n( ) A confiabilidade intercoder ou interrater, que mede concordância entre diferentes codificadores ou avaliadores analisando os mesmos dados, é um critério aplicável apenas à pesquisa quantitativa, não tendo equivalente em abordagens qualitativas.",
+        pergunta: "Julgue as afirmações a seguir sobre validade e confiabilidade na pesquisa social:",
+        vfStatements: [
+            "Enquanto a tradição quantitativa enfatiza validade interna, validade externa, validade de construto e confiabilidade estatística, pesquisadores qualitativos frequentemente propõem critérios alternativos como credibilidade, transferibilidade, dependabilidade e confirmabilidade (Lincoln e Guba).",
+            "A triangulação metodológica (uso de múltiplos métodos para estudar um mesmo fenômeno) contribui potencialmente para a validade da pesquisa ao corroborar resultados por diferentes vias, mas não garante automaticamente maior validade se os diferentes métodos compartilharem os mesmos vieses.",
+            "A validade ecológica refere-se ao grau em que descobertas científicas são aplicáveis ao mundo social real, para além de ambientes artificiais ou controlados de pesquisa, sendo particularmente relevante para estudos experimentais nas ciências sociais.",
+            "A reflexividade, processo pelo qual pesquisadores examinam criticamente como sua posição social, pressupostos e decisões metodológicas influenciam a pesquisa, é irrelevante para questões de validade na pesquisa social qualitativa.",
+            "A confiabilidade intercoder ou interrater, que mede concordância entre diferentes codificadores ou avaliadores analisando os mesmos dados, é um critério aplicável apenas à pesquisa quantitativa, não tendo equivalente em abordagens qualitativas."
+        ],
         opcoes: [
             "V, V, V, F, F",
             "F, V, F, V, V",
@@ -681,7 +750,14 @@ const questions = [
         disciplina: "Epistemologia",
         tipo: "VF",
         contexto: "Questões éticas na pesquisa social envolvem não apenas conformidade com regulamentos e códigos institucionais, mas também reflexões epistemológicas fundamentais sobre a relação entre pesquisador e pesquisados, potenciais consequências da pesquisa e responsabilidades sociais da ciência.",
-        pergunta: "Com base nas discussões contemporâneas sobre ética e epistemologia na pesquisa social, julgue os itens a seguir:\n\n( ) A neutralidade axiológica proposta por Max Weber implica que pesquisadores sociais devem abster-se de julgamentos de valor em sua pesquisa, o que elimina completamente dilemas éticos no processo de investigação científica.\n( ) Metodologias participativas e colaborativas, como pesquisa-ação e etnografia colaborativa, representam não apenas escolhas técnicas, mas posicionamentos epistemológicos que desafiam hierarquias tradicionais entre pesquisador e pesquisados, reconhecendo estes últimos como coprodutores de conhecimento.\n( ) A questão do consentimento informado nas ciências sociais envolve complexidades específicas, como em etnografias de longa duração ou pesquisas em contextos públicos, que não são adequadamente contempladas por modelos éticos importados das ciências biomédicas.\n( ) Segundo a epistemologia feminista de pesquisadores como Donna Haraway, a objetividade nas ciências sociais não requer neutralidade desengajada, mas \"conhecimentos situados\" que reconheçam explicitamente a posicionalidade do pesquisador e suas implicações éticas e políticas.\n( ) Considerações éticas na pesquisa social são extrínsecas ao processo de produção de conhecimento, constituindo restrições externas que limitam a liberdade científica sem contribuir para a qualidade epistemológica da investigação.",
+        pergunta: "Com base nas discussões contemporâneas sobre ética e epistemologia na pesquisa social, julgue os itens a seguir:",
+        vfStatements: [
+            "A neutralidade axiológica proposta por Max Weber implica que pesquisadores sociais devem abster-se de julgamentos de valor em sua pesquisa, o que elimina completamente dilemas éticos no processo de investigação científica.",
+            "Metodologias participativas e colaborativas, como pesquisa-ação e etnografia colaborativa, representam não apenas escolhas técnicas, mas posicionamentos epistemológicos que desafiam hierarquias tradicionais entre pesquisador e pesquisados, reconhecendo estes últimos como coprodutores de conhecimento.",
+            "A questão do consentimento informado nas ciências sociais envolve complexidades específicas, como em etnografias de longa duração ou pesquisas em contextos públicos, que não são adequadamente contempladas por modelos éticos importados das ciências biomédicas.",
+            "Segundo a epistemologia feminista de pesquisadores como Donna Haraway, a objetividade nas ciências sociais não requer neutralidade desengajada, mas \"conhecimentos situados\" que reconheçam explicitamente a posicionalidade do pesquisador e suas implicações éticas e políticas.",
+            "Considerações éticas na pesquisa social são extrínsecas ao processo de produção de conhecimento, constituindo restrições externas que limitam a liberdade científica sem contribuir para a qualidade epistemológica da investigação."
+        ],
         opcoes: [
             "F, V, V, V, F",
             "V, F, V, F, V",
@@ -720,7 +796,14 @@ const questions = [
         disciplina: "Ciencia Politica",
         tipo: "VF",
         contexto: "A pandemia de COVID-19 reacendeu debates sobre os limites da autoridade estatal e as liberdades individuais. Medidas como lockdowns, obrigatoriedade de vacinação e restrições à circulação geraram controvérsias políticas e jurídicas em diversos países, evidenciando tensões entre segurança coletiva e direitos individuais.",
-        pergunta: "Considerando a teoria contratualista de Thomas Hobbes, julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):\n\n( ) Segundo Hobbes, no estado de natureza, os indivíduos viveriam em constante medo e insegurança, havendo \"guerra de todos contra todos\", o que justificaria a transferência de liberdades naturais para um poder soberano capaz de garantir paz e segurança.\n( ) Em uma interpretação hobbesiana, a aceitação de restrições temporárias às liberdades individuais durante uma pandemia poderia ser justificada pelo objetivo primordial do contrato social: a preservação da vida.\n( ) Para Hobbes, o poder soberano estabelecido pelo contrato social deve ser limitado pela separação de poderes e por um sistema de freios e contrapesos, garantindo o equilíbrio entre autoridade estatal e liberdades individuais.\n( ) A teoria hobbesiana reconhece um direito inalienável de resistência contra o soberano sempre que este impuser restrições às liberdades individuais, mesmo quando tais restrições visem à segurança coletiva.\n( ) No Leviatã, Hobbes argumenta que o poder soberano deve ser absoluto e indivisível, uma vez que a fragmentação da autoridade poderia reconduzir à insegurança que caracteriza o estado de natureza.",
+        pergunta: "Considerando a teoria contratualista de Thomas Hobbes, julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "Segundo Hobbes, no estado de natureza, os indivíduos viveriam em constante medo e insegurança, havendo \"guerra de todos contra todos\", o que justificaria a transferência de liberdades naturais para um poder soberano capaz de garantir paz e segurança.",
+            "Em uma interpretação hobbesiana, a aceitação de restrições temporárias às liberdades individuais durante uma pandemia poderia ser justificada pelo objetivo primordial do contrato social: a preservação da vida.",
+            "Para Hobbes, o poder soberano estabelecido pelo contrato social deve ser limitado pela separação de poderes e por um sistema de freios e contrapesos, garantindo o equilíbrio entre autoridade estatal e liberdades individuais.",
+            "A teoria hobbesiana reconhece um direito inalienável de resistência contra o soberano sempre que este impuser restrições às liberdades individuais, mesmo quando tais restrições visem à segurança coletiva.",
+            "No Leviatã, Hobbes argumenta que o poder soberano deve ser absoluto e indivisível, uma vez que a fragmentação da autoridade poderia reconduzir à insegurança que caracteriza o estado de natureza."
+        ],
         opcoes: [
             "V, V, F, F, V",
             "V, F, V, V, F",
@@ -824,7 +907,14 @@ const questions = [
         disciplina: "Ciencia Politica",
         tipo: "VF",
         contexto: "Experiências democráticas contemporâneas têm combinado elementos representativos tradicionais com inovações participativas e deliberativas. No Brasil, instrumentos como orçamentos participativos, conselhos de políticas públicas e consultas populares coexistem com instituições representativas, enquanto plataformas digitais abrem novas possibilidades de engajamento político dos cidadãos.",
-        pergunta: "Considerando os diferentes modelos teóricos de democracia, julgue os itens a seguir como verdadeiros (V) ou falsos (F):\n\n( ) A democracia deliberativa, associada a autores como Jürgen Habermas e Joshua Cohen, enfatiza a qualidade do processo comunicativo na formação da vontade política, valorizando a troca pública de razões em condições de igualdade e a construção de consensos baseados no melhor argumento.\n( ) Para a teoria da democracia participativa, desenvolvida por autores como Carole Pateman e Benjamin Barber, a participação política deve restringir-se às eleições periódicas, evitando sobrecarregar os cidadãos com decisões técnicas complexas que exigem conhecimento especializado.\n( ) O modelo competitivo-elitista de democracia, representado por Joseph Schumpeter, concebe a democracia primordialmente como um método de seleção de líderes políticos através da competição pelo voto popular, limitando a participação dos cidadãos ao momento eleitoral.\n( ) A democracia representativa, na concepção liberal, baseia-se no princípio da soberania popular, mas reconhece a impossibilidade prática da participação direta de todos os cidadãos em sociedades complexas e populosas, instituindo mecanismos de representação e accountability.\n( ) As abordagens contemporâneas da teoria democrática tendem a considerar os modelos representativo, participativo e deliberativo como necessariamente incompatíveis, impossibilitando arranjos institucionais que combinem elementos dos diferentes modelos.",
+        pergunta: "Considerando os diferentes modelos teóricos de democracia, julgue os itens a seguir como verdadeiros (V) ou falsos (F):",
+        vfStatements: [
+            "A democracia deliberativa, associada a autores como Jürgen Habermas e Joshua Cohen, enfatiza a qualidade do processo comunicativo na formação da vontade política, valorizando a troca pública de razões em condições de igualdade e a construção de consensos baseados no melhor argumento.",
+            "Para a teoria da democracia participativa, desenvolvida por autores como Carole Pateman e Benjamin Barber, a participação política deve restringir-se às eleições periódicas, evitando sobrecarregar os cidadãos com decisões técnicas complexas que exigem conhecimento especializado.",
+            "O modelo competitivo-elitista de democracia, representado por Joseph Schumpeter, concebe a democracia primordialmente como um método de seleção de líderes políticos através da competição pelo voto popular, limitando a participação dos cidadãos ao momento eleitoral.",
+            "A democracia representativa, na concepção liberal, baseia-se no princípio da soberania popular, mas reconhece a impossibilidade prática da participação direta de todos os cidadãos em sociedades complexas e populosas, instituindo mecanismos de representação e accountability.",
+            "As abordagens contemporâneas da teoria democrática tendem a considerar os modelos representativo, participativo e deliberativo como necessariamente incompatíveis, impossibilitando arranjos institucionais que combinem elementos dos diferentes modelos."
+        ],
         opcoes: [
             "V, F, V, V, F",
             "V, V, F, F, V",
@@ -913,7 +1003,14 @@ const questions = [
         disciplina: "Ciencia Politica",
         tipo: "VF",
         contexto: "Debates contemporâneos sobre políticas de redistribuição de renda, ações afirmativas e reconhecimento de direitos de minorias envolvem diferentes concepções de justiça. No Brasil, políticas como cotas raciais em universidades e programas de transferência de renda têm gerado controvérsias que refletem visões distintas sobre igualdade, mérito e compensação histórica.",
-        pergunta: "Com base nas principais teorias da justiça desenvolvidas na filosofia política contemporânea, julgue os itens como verdadeiros (V) ou falsos (F):\n\n( ) John Rawls, em \"Uma Teoria da Justiça\", propõe uma concepção de \"justiça como equidade\" baseada em princípios que seriam escolhidos por pessoas livres e iguais em uma posição original sob o \"véu da ignorância\", onde desconheceriam sua posição social específica.\n( ) Robert Nozick, em sua teoria libertariana da justiça, defende que a distribuição de recursos é justa independentemente de seu padrão resultante, desde que derive de aquisições justas e transferências voluntárias, criticando qualquer redistribuição compulsória de renda ou riqueza.\n( ) A teoria da justiça de Amartya Sen foca exclusivamente na igualdade de resultados materiais como critério de justiça, rejeitando considerações sobre capacidades, oportunidades ou processos na avaliação de arranjos sociais.\n( ) Nancy Fraser propõe um modelo tridimensional de justiça que integra demandas por redistribuição econômica, reconhecimento cultural e representação política, argumentando que estas dimensões são interligadas mas não redutíveis umas às outras.\n( ) Charles Taylor, em sua abordagem comunitarista, defende que princípios de justiça universalistas como os propostos por Rawls devem sempre prevalecer sobre valores culturais particulares, estabelecendo a primazia da justiça liberal sobre concepções comunitárias do bem.",
+        pergunta: "Com base nas principais teorias da justiça desenvolvidas na filosofia política contemporânea, julgue os itens como verdadeiros (V) ou falsos (F):",
+        vfStatements: [
+            "John Rawls, em \"Uma Teoria da Justiça\", propõe uma concepção de \"justiça como equidade\" baseada em princípios que seriam escolhidos por pessoas livres e iguais em uma posição original sob o \"véu da ignorância\", onde desconheceriam sua posição social específica.",
+            "Robert Nozick, em sua teoria libertariana da justiça, defende que a distribuição de recursos é justa independentemente de seu padrão resultante, desde que derive de aquisições justas e transferências voluntárias, criticando qualquer redistribuição compulsória de renda ou riqueza.",
+            "A teoria da justiça de Amartya Sen foca exclusivamente na igualdade de resultados materiais como critério de justiça, rejeitando considerações sobre capacidades, oportunidades ou processos na avaliação de arranjos sociais.",
+            "Nancy Fraser propõe um modelo tridimensional de justiça que integra demandas por redistribuição econômica, reconhecimento cultural e representação política, argumentando que estas dimensões são interligadas mas não redutíveis umas às outras.",
+            "Charles Taylor, em sua abordagem comunitarista, defende que princípios de justiça universalistas como os propostos por Rawls devem sempre prevalecer sobre valores culturais particulares, estabelecendo a primazia da justiça liberal sobre concepções comunitárias do bem."
+        ],
         opcoes: [
             "V, V, F, V, F",
             "F, V, V, F, V",
@@ -987,7 +1084,14 @@ const questions = [
         disciplina: "Ciencia Politica",
         tipo: "VF",
         contexto: "Democracias contemporâneas enfrentam o que alguns teóricos chamam de \"crise de representação\", marcada pela desconfiança em instituições representativas tradicionais. No Brasil, pesquisas de opinião mostram níveis historicamente baixos de confiança em partidos políticos e no Congresso Nacional, enquanto novos atores como movimentos sociais, organizações da sociedade civil e até mesmo celebridades reivindicam papéis representativos fora dos canais eleitorais formais.",
-        pergunta: "Considerando as teorias contemporâneas sobre representação política, julgue os itens como verdadeiros (V) ou falsos (F):\n\n( ) Hanna Pitkin, em sua obra clássica \"O Conceito de Representação\", distingue diferentes dimensões da representação: descritiva (semelhança entre representantes e representados), substantiva (atuação no interesse dos representados) e simbólica (identificação emocional), demonstrando a complexidade do fenômeno representativo.\n( ) A teoria da \"representação como advocacy\", desenvolvida por Nadia Urbinati, enfatiza o caráter dinâmico e comunicativo da representação como atividade contínua que vai além do momento eleitoral, envolvendo relações discursivas entre representantes e representados.\n( ) Bernard Manin, em \"Os Princípios do Governo Representativo\", identifica uma transição histórica da democracia parlamentar para a democracia de partido e, posteriormente, para a \"democracia de audiência\", caracterizada pela personalização da política e pela importância crescente da mídia.\n( ) Iris Marion Young argumenta que a representação política deve ser concebida em termos estritamente formais e procedimentais, rejeitando qualquer consideração sobre inclusão de perspectivas sociais diversas ou representação de grupos marginalizados nos processos decisórios.\n( ) A teoria deliberativa da representação, proposta por Jane Mansbridge, defende a \"representação antecipada\", na qual representantes agem com base nas preferências futuras projetadas dos eleitores, não apenas respondendo a preferências atuais ou cumprindo promessas passadas.",
+        pergunta: "Considerando as teorias contemporâneas sobre representação política, julgue os itens como verdadeiros (V) ou falsos (F):",
+        vfStatements: [
+            "Hanna Pitkin, em sua obra clássica \"O Conceito de Representação\", distingue diferentes dimensões da representação: descritiva (semelhança entre representantes e representados), substantiva (atuação no interesse dos representados) e simbólica (identificação emocional), demonstrando a complexidade do fenômeno representativo.",
+            "A teoria da \"representação como advocacy\", desenvolvida por Nadia Urbinati, enfatiza o caráter dinâmico e comunicativo da representação como atividade contínua que vai além do momento eleitoral, envolvendo relações discursivas entre representantes e representados.",
+            "Bernard Manin, em \"Os Princípios do Governo Representativo\", identifica uma transição histórica da democracia parlamentar para a democracia de partido e, posteriormente, para a \"democracia de audiência\", caracterizada pela personalização da política e pela importância crescente da mídia.",
+            "Iris Marion Young argumenta que a representação política deve ser concebida em termos estritamente formais e procedimentais, rejeitando qualquer consideração sobre inclusão de perspectivas sociais diversas ou representação de grupos marginalizados nos processos decisórios.",
+            "A teoria deliberativa da representação, proposta por Jane Mansbridge, defende a \"representação antecipada\", na qual representantes agem com base nas preferências futuras projetadas dos eleitores, não apenas respondendo a preferências atuais ou cumprindo promessas passadas."
+        ],
         opcoes: [
             "V, V, V, F, V",
             "V, F, V, V, F",
@@ -1093,15 +1197,22 @@ const questions = [
         disciplina: "Psicologia social",
         tipo: "VF",
         contexto: "A teoria da dissonância cognitiva, proposta por Leon Festinger em 1957, tem amplas aplicações para compreender fenômenos contemporâneos como a persistência em crenças falsas mesmo diante de evidências contrárias, a justificação de comportamentos moralmente questionáveis, ou a racionalização de escolhas difíceis. Estudos recentes em neurociência têm identificado correlatos neurais dos processos de redução de dissonância.",
-        pergunta: "Julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):\n\n( ) A dissonância cognitiva é um estado de desconforto psicológico que ocorre quando uma pessoa mantém simultaneamente cognições (crenças, atitudes, valores) contraditórias entre si, ou quando age de maneira inconsistente com suas atitudes, motivando esforços para reduzir essa inconsistência.\n( ) No paradigma experimental da \"justificação do esforço\", Festinger e Carlsmith demonstraram que pessoas tendem a valorizar mais resultados ou grupos para os quais tiveram que realizar esforços significativos, reduzindo a dissonância potencial entre o esforço despendido e o valor percebido.\n( ) O paradigma da \"obediência induzida\" demonstra que, ao convencer pessoas a defenderem posições contrárias às suas próprias atitudes (com justificação insuficiente), elas tendem a mudar suas atitudes na direção da posição defendida para reduzir a dissonância.\n( ) A teoria da auto-afirmação, desenvolvida como extensão da teoria da dissonância, sugere que ameaças à auto-imagem em um domínio podem ser compensadas afirmando valores pessoais importantes em outros domínios, reduzindo a necessidade de resolver diretamente a dissonância.\n( ) Segundo Festinger, quanto maior o número de cognições consonantes com uma determinada crença e quanto mais importantes forem essas cognições para o indivíduo, menor será a pressão para reduzir a dissonância quando essa crença for desafiada.",
+        pergunta: "Julgue as afirmações a seguir como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "A dissonância cognitiva é um estado de desconforto psicológico que ocorre quando uma pessoa mantém simultaneamente cognições (crenças, atitudes, valores) contraditórias entre si, ou quando age de maneira inconsistente com suas atitudes, motivando esforços para reduzir essa inconsistência.",
+            "No paradigma experimental da \"justificação do esforço\", Festinger e Carlsmith demonstraram que pessoas tendem a valorizar mais resultados ou grupos para os quais tiveram que realizar esforços significativos, reduzindo a dissonância potencial entre o esforço despendido e o valor percebido.",
+            "O paradigma da \"obediência induzida\" demonstra que, ao convencer pessoas a defenderem posições contrárias às suas próprias atitudes (com justificação insuficiente), elas tendem a mudar suas atitudes na direção da posição defendida para reduzir a dissonância.",
+            "A teoria da auto-afirmação, desenvolvida como extensão da teoria da dissonância, sugere que ameaças à auto-imagem em um domínio podem ser compensadas afirmando valores pessoais importantes em outros domínios, reduzindo a necessidade de resolver diretamente a dissonância.",
+            "Segundo Festinger, quanto maior o número de cognições consonantes com uma determinada crença e quanto mais importantes forem essas cognições para o indivíduo, menor será a pressão para reduzir a dissonância quando essa crença for desafiada."
+        ],
         opcoes: [
-            "V, V, V, V, V", // Mantendo a resposta original, com a ressalva já anotada.
+            "V, V, V, V, V",
             "F, V, F, V, F",
             "V, V, V, F, F",
             "F, F, V, V, V",
             "V, F, F, V, V"
         ],
-        resposta: "A" // Mantendo a resposta original, com a ressalva já anotada.
+        resposta: "A"
     },
     {
         id: "PsicologiaSocial_4",
@@ -1133,19 +1244,26 @@ const questions = [
         ],
         opcoes: [
             "I, II e III",
-            "I, II e V", // Mantendo a resposta original, com a ressalva já anotada.
+            "I, II e V",
             "I, III e IV",
             "II, IV e V",
             "III, IV e V"
         ],
-        resposta: "B" // Mantendo a resposta original, com a ressalva já anotada.
+        resposta: "B"
     },
     {
         id: "PsicologiaSocial_6",
         disciplina: "Psicologia social",
         tipo: "VF",
         contexto: "Os processos subjacentes à atração interpessoal e formação de relacionamentos têm sido transformados pelo advento das tecnologias digitais. Aplicativos de relacionamento, redes sociais e ambientes virtuais criam novos contextos para o desenvolvimento de laços afetivos, mantendo, porém, muitos dos princípios psicossociais básicos identificados por décadas de pesquisa.",
-        pergunta: "Sobre os fatores que influenciam a atração interpessoal, julgue os itens como verdadeiros (V) ou falsos (F):\n\n( ) O efeito de mera exposição, demonstrado por Zajonc, indica que a exposição repetida a um estímulo social (como uma pessoa) tende a aumentar a atração por esse estímulo, mesmo na ausência de interação, desde que a exposição inicial não seja negativa.\n( ) A hipótese da complementaridade, que propõe que nos sentimos mais atraídos por pessoas com características de personalidade opostas ou complementares às nossas, recebeu mais suporte empírico que a hipótese da similaridade, que sugere atração baseada em semelhanças.\n( ) A atratividade física, embora influenciada por padrões culturais específicos, apresenta alguns elementos universais ou transculturais, como a preferência por simetria facial e proporções corporais associadas à saúde e fertilidade, conforme estudos evolutivos.\n( ) A teoria da equidade sugere que nos sentimos mais satisfeitos em relacionamentos percebidos como justos e equilibrados em termos de trocas, enquanto percepções persistentes de inequidade (seja por subbenefício ou superbenefício) tendem a gerar insatisfação.\n( ) A autopercepção de mercado (market value), conforme estudos em psicologia econômica de relacionamentos, não influencia significativamente as expectativas e escolhas de parceiros, sendo irrelevante para compreender dinâmicas de atração e seleção.",
+        pergunta: "Sobre os fatores que influenciam a atração interpessoal, julgue os itens como verdadeiros (V) ou falsos (F):",
+        vfStatements: [
+            "O efeito de mera exposição, demonstrado por Zajonc, indica que a exposição repetida a um estímulo social (como uma pessoa) tende a aumentar a atração por esse estímulo, mesmo na ausência de interação, desde que a exposição inicial não seja negativa.",
+            "A hipótese da complementaridade, que propõe que nos sentimos mais atraídos por pessoas com características de personalidade opostas ou complementares às nossas, recebeu mais suporte empírico que a hipótese da similaridade, que sugere atração baseada em semelhanças.",
+            "A atratividade física, embora influenciada por padrões culturais específicos, apresenta alguns elementos universais ou transculturais, como a preferência por simetria facial e proporções corporais associadas à saúde e fertilidade, conforme estudos evolutivos.",
+            "A teoria da equidade sugere que nos sentimos mais satisfeitos em relacionamentos percebidos como justos e equilibrados em termos de trocas, enquanto percepções persistentes de inequidade (seja por subbenefício ou superbenefício) tendem a gerar insatisfação.",
+            "A autopercepção de mercado (market value), conforme estudos em psicologia econômica de relacionamentos, não influencia significativamente as expectativas e escolhas de parceiros, sendo irrelevante para compreender dinâmicas de atração e seleção."
+        ],
         opcoes: [
             "V, F, V, V, F",
             "F, V, F, V, V",
@@ -1197,7 +1315,14 @@ const questions = [
         disciplina: "Psicologia social",
         tipo: "VF",
         contexto: "As redes sociais digitais intensificaram processos de comparação social, com potenciais impactos no bem-estar psicológico e na formação identitária. Estudos indicam que a exposição seletiva a representações idealizadas da vida alheia pode afetar a autoavaliação e a satisfação com a própria vida, especialmente entre jovens.",
-        pergunta: "Sobre os processos de comparação social e seus efeitos, julgue as afirmações como verdadeiras (V) ou falsas (F):\n\n( ) A teoria da comparação social, proposta inicialmente por Leon Festinger, sugere que as pessoas têm uma tendência a se comparar com outros para avaliar suas próprias opiniões e habilidades, especialmente na ausência de padrões objetivos.\n( ) Comparações para baixo (com pessoas percebidas como em situação pior) tendem a elevar a autoestima e gerar afetos positivos, enquanto comparações para cima (com pessoas percebidas como em melhor situação) podem tanto inspirar e motivar quanto ameaçar o autoconceito, dependendo de fatores moderadores.\n( ) A teoria da identidade social propõe que parte significativa do autoconceito deriva de pertencimentos grupais, motivando comportamentos que favoreçam uma distinção positiva do próprio grupo em comparação com outros grupos relevantes.\n( ) Pesquisas sobre os efeitos das redes sociais demonstram que comparações sociais online têm impacto negligenciável na autoimagem e bem-estar, independentemente da frequência de uso, tipo de conteúdo consumido ou vulnerabilidades psicológicas preexistentes.\n( ) O fenômeno da comparação social contrafactual envolve comparações não com outras pessoas reais, mas com versões alternativas do próprio self (\"o que poderia ter sido\"), gerando emoções como arrependimento, alívio ou ressentimento que influenciam decisões futuras.",
+        pergunta: "Sobre os processos de comparação social e seus efeitos, julgue as afirmações como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "A teoria da comparação social, proposta inicialmente por Leon Festinger, sugere que as pessoas têm uma tendência a se comparar com outros para avaliar suas próprias opiniões e habilidades, especialmente na ausência de padrões objetivos.",
+            "Comparações para baixo (com pessoas percebidas como em situação pior) tendem a elevar a autoestima e gerar afetos positivos, enquanto comparações para cima (com pessoas percebidas como em melhor situação) podem tanto inspirar e motivar quanto ameaçar o autoconceito, dependendo de fatores moderadores.",
+            "A teoria da identidade social propõe que parte significativa do autoconceito deriva de pertencimentos grupais, motivando comportamentos que favoreçam uma distinção positiva do próprio grupo em comparação com outros grupos relevantes.",
+            "Pesquisas sobre os efeitos das redes sociais demonstram que comparações sociais online têm impacto negligenciável na autoimagem e bem-estar, independentemente da frequência de uso, tipo de conteúdo consumido ou vulnerabilidades psicológicas preexistentes.",
+            "O fenômeno da comparação social contrafactual envolve comparações não com outras pessoas reais, mas com versões alternativas do próprio self (\"o que poderia ter sido\"), gerando emoções como arrependimento, alívio ou ressentimento que influenciam decisões futuras."
+        ],
         opcoes: [
             "V, V, V, F, V",
             "F, V, V, V, F",
@@ -1266,7 +1391,14 @@ const questions = [
         disciplina: "Sociologia",
         tipo: "VF",
         contexto: "A teoria marxista sobre classes sociais e alienação permanece influente na análise de fenômenos como precarização do trabalho e concentração de riqueza. Segundo dados do World Inequality Report de 2022, os 10% mais ricos da população mundial capturam atualmente 52% da renda global, enquanto a metade mais pobre captura apenas 8,5%. Na última década, o avanço da gig economy e do trabalho mediado por plataformas digitais trouxe novos desafios para a compreensão das relações de trabalho contemporâneas.",
-        pergunta: "Julgue as afirmações seguintes como verdadeiras (V) ou falsas (F):\n\n( ) Para Marx, a alienação do trabalho manifesta-se apenas na separação entre o trabalhador e o produto de seu trabalho, não tendo relação com o processo produtivo em si.\n( ) Na teoria marxista, as classes sociais são definidas fundamentalmente pela posição que os indivíduos ocupam nas relações de produção, especialmente pela propriedade ou não dos meios de produção.\n( ) O conceito de mais-valia refere-se à diferença entre o valor que o trabalho produz e o valor que o trabalhador recebe como salário, constituindo a base da exploração capitalista.\n( ) Segundo Marx, a infraestrutura econômica determina de forma mecânica e unidirecional a superestrutura ideológica, não havendo possibilidade de influência recíproca entre ambas.\n( ) A noção de \"consciência de classe\" em Marx refere-se à compreensão que uma classe tem de seus interesses objetivos, sendo que a \"classe em si\" (condição objetiva) precede historicamente a \"classe para si\" (consciência subjetiva).",
+        pergunta: "Julgue as afirmações seguintes como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "Para Marx, a alienação do trabalho manifesta-se apenas na separação entre o trabalhador e o produto de seu trabalho, não tendo relação com o processo produtivo em si.",
+            "Na teoria marxista, as classes sociais são definidas fundamentalmente pela posição que os indivíduos ocupam nas relações de produção, especialmente pela propriedade ou não dos meios de produção.",
+            "O conceito de mais-valia refere-se à diferença entre o valor que o trabalho produz e o valor que o trabalhador recebe como salário, constituindo a base da exploração capitalista.",
+            "Segundo Marx, a infraestrutura econômica determina de forma mecânica e unidirecional a superestrutura ideológica, não havendo possibilidade de influência recíproca entre ambas.",
+            "A noção de \"consciência de classe\" em Marx refere-se à compreensão que uma classe tem de seus interesses objetivos, sendo que a \"classe em si\" (condição objetiva) precede historicamente a \"classe para si\" (consciência subjetiva)."
+        ],
         opcoes: [
             "F, V, V, F, V",
             "V, V, F, V, F",
@@ -1318,7 +1450,14 @@ const questions = [
         disciplina: "Sociologia",
         tipo: "VF",
         contexto: "Estudos interseccionais têm evidenciado como diferentes eixos de opressão se articulam na produção de desigualdades. No Brasil, o Atlas da Violência 2023 mostra que 77% das vítimas de homicídio são pessoas negras, e que mulheres negras têm probabilidade 65% maior de serem assassinadas em comparação a mulheres não-negras. No mercado de trabalho, dados da PNAD Contínua indicam que mulheres negras recebem, em média, apenas 43% do salário de homens brancos para funções equivalentes.",
-        pergunta: "Considerando as perspectivas teóricas sobre interseccionalidade e racismo estrutural, julgue as afirmações como verdadeiras (V) ou falsas (F):\n\n( ) O conceito de interseccionalidade, desenvolvido por Kimberlé Crenshaw, busca compreender como diferentes sistemas de opressão (como racismo, sexismo e classismo) se entrecruzam, produzindo experiências específicas que não podem ser entendidas pela simples adição de categorias.\n( ) Racismo estrutural, na perspectiva de Silvio Almeida, refere-se exclusivamente a manifestações explícitas de preconceito racial em situações interpessoais, não abrangendo dimensões institucionais ou sistêmicas.\n( ) A teoria interseccional argumenta que, embora categorias como raça, gênero e classe produzam opressões específicas, existe uma hierarquia universal entre esses eixos, sendo o classismo sempre determinante em última instância.\n( ) Patricia Hill Collins propõe o conceito de \"matriz de dominação\" para compreender como diferentes sistemas de opressão estão interconectados e organizados em domínios de poder específicos, como o estrutural, disciplinar, hegemônico e interpessoal.\n( ) As abordagens interseccionais defendem que políticas identitárias isoladas são suficientes para enfrentar desigualdades complexas, dispensando análises mais amplas sobre transformações estruturais e econômicas.",
+        pergunta: "Considerando as perspectivas teóricas sobre interseccionalidade e racismo estrutural, julgue as afirmações como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "O conceito de interseccionalidade, desenvolvido por Kimberlé Crenshaw, busca compreender como diferentes sistemas de opressão (como racismo, sexismo e classismo) se entrecruzam, produzindo experiências específicas que não podem ser entendidas pela simples adição de categorias.",
+            "Racismo estrutural, na perspectiva de Silvio Almeida, refere-se exclusivamente a manifestações explícitas de preconceito racial em situações interpessoais, não abrangendo dimensões institucionais ou sistêmicas.",
+            "A teoria interseccional argumenta que, embora categorias como raça, gênero e classe produzam opressões específicas, existe uma hierarquia universal entre esses eixos, sendo o classismo sempre determinante em última instância.",
+            "Patricia Hill Collins propõe o conceito de \"matriz de dominação\" para compreender como diferentes sistemas de opressão estão interconectados e organizados em domínios de poder específicos, como o estrutural, disciplinar, hegemônico e interpessoal.",
+            "As abordagens interseccionais defendem que políticas identitárias isoladas são suficientes para enfrentar desigualdades complexas, dispensando análises mais amplas sobre transformações estruturais e econômicas."
+        ],
         opcoes: [
             "V, F, F, V, F",
             "V, V, F, F, V",
@@ -1385,7 +1524,14 @@ const questions = [
         disciplina: "Sociologia",
         tipo: "VF",
         contexto: "A Escola de Frankfurt desenvolveu importantes contribuições para a compreensão crítica da cultura e da sociedade contemporâneas. Fenômenos como a concentração de propriedade dos meios de comunicação (com os 50 maiores conglomerados de mídia controlando mais de 70% do conteúdo global), o crescimento das redes sociais algorítmicas e a mercantilização de expressões culturais diversas têm sido analisados sob a perspectiva da teoria crítica.",
-        pergunta: "Sobre a Escola de Frankfurt e seus conceitos, julgue as afirmações como verdadeiras (V) ou falsas (F):\n\n( ) O conceito de \"indústria cultural\", desenvolvido por Adorno e Horkheimer, refere-se à transformação da cultura em mercadoria, padronizada e administrada segundo princípios da racionalidade técnica e econômica.\n( ) Herbert Marcuse, em \"O Homem Unidimensional\", defende que a sociedade industrial avançada integra as forças potencialmente opositoras através da satisfação de necessidades materiais e da manipulação das necessidades, criando um universo totalitário de racionalidade tecnológica.\n( ) Walter Benjamin, em \"A Obra de Arte na Era de sua Reprodutibilidade Técnica\", celebra integralmente a massificação cultural proporcionada pelas novas tecnologias, sem identificar nenhuma perda significativa em relação às formas tradicionais de experiência artística.\n( ) Jürgen Habermas, em sua teoria da ação comunicativa, propõe que a racionalidade instrumental coloniza progressivamente o \"mundo da vida\", substituindo o entendimento comunicativo por imperativos sistêmicos orientados ao êxito.\n( ) Axel Honneth, representante da terceira geração da Escola de Frankfurt, desenvolve uma teoria do reconhecimento que abandona completamente as preocupações com as dimensões econômicas e de classe, focando exclusivamente em questões identitárias.",
+        pergunta: "Sobre a Escola de Frankfurt e seus conceitos, julgue as afirmações como verdadeiras (V) ou falsas (F):",
+        vfStatements: [
+            "O conceito de \"indústria cultural\", desenvolvido por Adorno e Horkheimer, refere-se à transformação da cultura em mercadoria, padronizada e administrada segundo princípios da racionalidade técnica e econômica.",
+            "Herbert Marcuse, em \"O Homem Unidimensional\", defende que a sociedade industrial avançada integra as forças potencialmente opositoras através da satisfação de necessidades materiais e da manipulação das necessidades, criando um universo totalitário de racionalidade tecnológica.",
+            "Walter Benjamin, em \"A Obra de Arte na Era de sua Reprodutibilidade Técnica\", celebra integralmente a massificação cultural proporcionada pelas novas tecnologias, sem identificar nenhuma perda significativa em relação às formas tradicionais de experiência artística.",
+            "Jürgen Habermas, em sua teoria da ação comunicativa, propõe que a racionalidade instrumental coloniza progressivamente o \"mundo da vida\", substituindo o entendimento comunicativo por imperativos sistêmicos orientados ao êxito.",
+            "Axel Honneth, representante da terceira geração da Escola de Frankfurt, desenvolve uma teoria do reconhecimento que abandona completamente as preocupações com as dimensões econômicas e de classe, focando exclusivamente em questões identitárias."
+        ],
         opcoes: [
             "V, V, F, V, F",
             "V, F, V, V, F",
@@ -1437,7 +1583,14 @@ const questions = [
         disciplina: "Sociologia",
         tipo: "VF",
         contexto: "Movimentos sociais têm desempenhado papel crucial na transformação das sociedades contemporâneas.",
-        pergunta: "Julgue as afirmações a seguir sobre movimentos sociais:\n\n( ) Movimentos sociais são sempre organizados formalmente com lideranças claras.\n( ) A Teoria da Mobilização de Recursos destaca a importância da organização e dos recursos para o sucesso dos movimentos.\n( ) Movimentos sociais contemporâneos frequentemente utilizam estratégias digitais para mobilização.\n( ) A ação coletiva é sempre motivada exclusivamente por interesses econômicos.\n( ) A repressão estatal pode tanto enfraquecer quanto fortalecer movimentos sociais.",
+        pergunta: "Julgue as afirmações a seguir sobre movimentos sociais:",
+        vfStatements: [
+            "Movimentos sociais são sempre organizados formalmente com lideranças claras.",
+            "A Teoria da Mobilização de Recursos destaca a importância da organização e dos recursos para o sucesso dos movimentos.",
+            "Movimentos sociais contemporâneos frequentemente utilizam estratégias digitais para mobilização.",
+            "A ação coletiva é sempre motivada exclusivamente por interesses econômicos.",
+            "A repressão estatal pode tanto enfraquecer quanto fortalecer movimentos sociais."
+        ],
         opcoes: [
             "F, V, V, F, V",
             "V, F, V, V, F",
@@ -1489,7 +1642,14 @@ const questions = [
         disciplina: "Sociologia",
         tipo: "VF",
         contexto: "A estratificação social influencia oportunidades e desigualdades em diferentes societies.",
-        pergunta: "Julgue as afirmações a seguir sobre estratificação social:\n\n( ) A mobilidade social é sempre alta em sociedades estratificadas.\n( ) A teoria marxista define classes sociais com base na relação com os meios de produção.\n( ) A estratificação pode ser baseada em fatores econômicos, culturais e sociais.\n( ) A teoria funcionalista justifica a desigualdade como necessária para o funcionamento social.\n( ) A estratificação social não afeta o acesso à educação e saúde.",
+        pergunta: "Julgue as afirmações a seguir sobre estratificação social:",
+        vfStatements: [
+            "A mobilidade social é sempre alta em sociedades estratificadas.",
+            "A teoria marxista define classes sociais com base na relação com os meios de produção.",
+            "A estratificação pode ser baseada em fatores econômicos, culturais e sociais.",
+            "A teoria funcionalista justifica a desigualdade como necessária para o funcionamento social.",
+            "A estratificação social não afeta o acesso à educação e saúde."
+        ],
         opcoes: [
             "F, V, V, V, F",
             "V, F, V, F, V",
@@ -1541,7 +1701,14 @@ const questions = [
         disciplina: "Sociologia",
         tipo: "VF",
         contexto: "Cultura e identidade são conceitos centrais para a compreensão das sociedades.",
-        pergunta: "Julgue as afirmações a seguir sobre cultura e identidade:\n\n( ) A cultura é um conjunto fixo e imutável de práticas e valores.\n( ) Identidades sociais são construídas socialmente e podem ser múltiplas e fluidas.\n( ) A globalização tem impacto na transformação das identidades culturais.\n( ) A cultura não influencia o comportamento social.\n( ) A identidade é sempre determinada biologicamente.",
+        pergunta: "Julgue as afirmações a seguir sobre cultura e identidade:",
+        vfStatements: [
+            "A cultura é um conjunto fixo e imutável de práticas e valores.",
+            "Identidades sociais são construídas socialmente e podem ser múltiplas e fluidas.",
+            "A globalização tem impacto na transformação das identidades culturais.",
+            "A cultura não influencia o comportamento social.",
+            "A identidade é sempre determinada biologicamente."
+        ],
         opcoes: [
             "F, V, V, F, F",
             "V, F, V, F, V",
@@ -1598,11 +1765,11 @@ const questions = [
         opcoes: [
             "I e IV",
             "II e III",
-            "I, II e III", // Mantendo a resposta original, com a ressalva já anotada.
+            "I, II e III",
             "I, III e IV",
             "II, III e IV"
         ],
-        resposta: "C" // Mantendo a resposta original, com a ressalva já anotada.
+        resposta: "C"
     },
     {
         id: "GeografiaHumana_3",
@@ -1624,7 +1791,13 @@ const questions = [
         disciplina: "Geografia Humana",
         tipo: "VF",
         contexto: "Originalmente formulada por Leon Trotsky e posteriormente incorporada à geografia por Neil Smith e David Harvey, a teoria do desenvolvimento desigual e combinado oferece uma perspectiva sobre as desigualdades espaciais no capitalismo.",
-        pergunta: "Sobre esta teoria, julgue os itens como verdadeiros (V) ou falsos (F):\n\n( ) O desenvolvimento desigual e combinado refere-se à coexistência, em um mesmo espaço geográfico, de formas avançadas e arcaicas de produção.\n( ) Segundo esta teoria, a tendência homogeneizadora do capital (equalização) opera simultaneamente à sua tendência diferenciadora, criando arranjos espaciais contraditórios.\n( ) A teoria propõe que as desigualdades espaciais são resultados exclusivos de fatores naturais ou culturais específicos de cada região.\n( ) O conceito do \"desenvolvimento em saltos\" explica como regiões periféricas podem incorporar tecnologias avançadas sem percorrer as mesmas etapas históricas das regiões centrais.",
+        pergunta: "Sobre esta teoria, julgue os itens como verdadeiros (V) ou falsos (F):",
+        vfStatements: [
+            "O desenvolvimento desigual e combinado refere-se à coexistência, em um mesmo espaço geográfico, de formas avançadas e arcaicas de produção.",
+            "Segundo esta teoria, a tendência homogeneizadora do capital (equalização) opera simultaneamente à sua tendência diferenciadora, criando arranjos espaciais contraditórios.",
+            "A teoria propõe que as desigualdades espaciais são resultados exclusivos de fatores naturais ou culturais específicos de cada região.",
+            "O conceito do \"desenvolvimento em saltos\" explica como regiões periféricas podem incorporar tecnologias avançadas sem percorrer as mesmas etapas históricas das regiões centrais."
+        ],
         opcoes: [
             "V, V, F, V",
             "F, V, V, F",
@@ -1690,7 +1863,13 @@ const questions = [
         disciplina: "Geografia Humana",
         tipo: "VF",
         contexto: "A segregação socioespacial constitui uma das características mais marcantes das cidades capitalistas, especialmente em contextos de elevada desigualdade social.",
-        pergunta: "Julgue as afirmações sobre segregação socioespacial:\n\n( ) A segregação residencial pode ser definida como a separação espacial de diferentes grupos sociais na cidade, resultando em áreas com relativa homogeneidade interna e heterogeneidade entre si.\n( ) Segundo a perspectiva marxista, a segregação urbana é um fenômeno natural resultante de preferências individuais de moradia, sem relação com dinâmicas estruturais do capitalismo.\n( ) A gentrificação refere-se ao processo de transformação e valorização de áreas urbanas anteriormente degradadas, frequentemente resultando no deslocamento de populações de baixa renda.\n( ) Para geógrafos críticos como David Harvey, a produção de espaços segregados na cidade está diretamente relacionada aos processos de acumulação de capital e especulação imobiliária.",
+        pergunta: "Julgue as afirmações sobre segregação socioespacial:",
+        vfStatements: [
+            "A segregação residencial pode ser definida como a separação espacial de diferentes grupos sociais na cidade, resultando em áreas com relativa homogeneidade interna e heterogeneidade entre si.",
+            "Segundo a perspectiva marxista, a segregação urbana é um fenômeno natural resultante de preferências individuais de moradia, sem relação com dinâmicas estruturais do capitalismo.",
+            "A gentrificação refere-se ao processo de transformação e valorização de áreas urbanas anteriormente degradadas, frequentemente resultando no deslocamento de populações de baixa renda.",
+            "Para geógrafos críticos como David Harvey, a produção de espaços segregados na cidade está diretamente relacionada aos processos de acumulação de capital e especulação imobiliária."
+        ],
         opcoes: [
             "V, F, V, V",
             "F, V, F, V",
