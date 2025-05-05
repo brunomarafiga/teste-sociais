@@ -42,11 +42,31 @@ document.addEventListener('DOMContentLoaded', () => {
         return array;
     }
 
+    // Adicione esta função após a função shuffleArray existente
+    function selectQuestions(allQuestions) {
+        // Separar questões por área
+        const principalAreas = ['Antropologia', 'Ciencia Politica', 'Sociologia'];
+        const principalQuestions = allQuestions.filter(q => principalAreas.includes(q.disciplina));
+        const otherQuestions = allQuestions.filter(q => !principalAreas.includes(q.disciplina));
+
+        // Embaralhar as questões de cada grupo
+        const shuffledPrincipal = shuffleArray([...principalQuestions]);
+        const shuffledOthers = shuffleArray([...otherQuestions]);
+
+        // Selecionar 35 questões das áreas principais
+        const selectedPrincipal = shuffledPrincipal.slice(0, 35);
+        
+        // Selecionar 15 questões das outras áreas
+        const selectedOthers = shuffledOthers.slice(0, 15);
+
+        // Combinar e embaralhar novamente
+        return shuffleArray([...selectedPrincipal, ...selectedOthers]);
+    }
+
+    // Modifique a função initQuiz para usar a nova seleção
     function initQuiz() {
-         // Verifica se a variável global 'questions' existe e tem conteúdo
         if (typeof questions === 'undefined' || !Array.isArray(questions) || questions.length === 0) {
             console.error("Erro: A variável global 'questions' não foi encontrada, está vazia ou não é um array.");
-            // Mostra erro na tela de apresentação ou em um local visível
             presentationArea.innerHTML = `<h2>Erro ao Carregar Perguntas</h2><p>Não foi possível encontrar os dados das perguntas. Verifique se o arquivo <code>questions.js</code> está na pasta correta, foi incluído no HTML antes de <code>script.js</code> e não contém erros de sintaxe.</p>`;
             presentationArea.classList.remove('hidden'); // Garante que a área de erro seja visível
             quizArea.classList.add('hidden');
@@ -55,27 +75,24 @@ document.addEventListener('DOMContentLoaded', () => {
             return; // Impede a continuação
         }
 
-        // Se as perguntas existem, configura o quiz
-        quizData = [...questions]; // Copia as perguntas globais
-        totalQuizQuestions = quizData.length; // Define o total
-        progressBar.max = totalQuizQuestions; // Define o max da barra
+        // Seleciona 50 questões com a distribuição desejada
+        quizData = selectQuestions(questions);
+        totalQuizQuestions = quizData.length; // Agora será 50
+        progressBar.max = totalQuizQuestions;
 
-        // Configura a tela inicial
+        // Resto do código permanece igual...
         presentationArea.classList.remove('hidden');
         quizArea.classList.add('hidden');
         resultsArea.classList.add('hidden');
         reviewArea.classList.add('hidden');
 
-        // Adiciona listener ao botão de iniciar
         startBtn.addEventListener('click', startQuiz);
-        // Adiciona listeners aos outros botões (faz sentido fazer aqui uma vez)
         nextBtn.addEventListener('click', handleNextQuestion);
-        restartBtn.addEventListener('click', () => location.reload()); // Recarrega a página para resetar
+        restartBtn.addEventListener('click', () => location.reload());
         reviewBtn.addEventListener('click', showReview);
         backToResultsBtn.addEventListener('click', showResults);
-        restartFromReviewBtn.addEventListener('click', () => location.reload()); // Recarrega a página
+        restartFromReviewBtn.addEventListener('click', () => location.reload());
     }
-
 
     function startQuiz() {
         currentQuestionIndex = 0;
@@ -93,13 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadQuestion() {
         nextBtn.disabled = true;
-        optionsContainer.innerHTML = ''; // Limpa opções/afirmações anteriores
+        optionsContainer.innerHTML = ''; // Limpa opções
 
-        // Remove lista de afirmações se existir (de questão AG anterior)
-        const oldAffirmations = quizArea.querySelector('.affirmations-list');
-         if (oldAffirmations) {
-             oldAffirmations.remove();
-         }
+        // Remove lista de afirmações/statements se existir (de questão AG/VF anterior)
+        const oldList = quizArea.querySelector('.statements-list'); // Usar classe genérica
+        if (oldList) {
+            oldList.remove();
+        }
 
         if (currentQuestionIndex < totalQuizQuestions) {
             const currentQuestion = quizData[currentQuestionIndex];
@@ -109,33 +126,37 @@ document.addEventListener('DOMContentLoaded', () => {
             progressText.textContent = `Questão ${questionNum} de ${totalQuizQuestions}`;
             progressBar.value = questionNum;
 
-            // Exibe número, disciplina e texto da pergunta
+            // Exibe número, disciplina e texto da pergunta (instrução)
             questionNumber.textContent = `Questão ${questionNum}`;
-            questionDiscipline.textContent = `Disciplina: ${currentQuestion.disciplina || 'Desconhecida'}`; // Mostra a disciplina
+            questionDiscipline.textContent = `Disciplina: ${currentQuestion.disciplina || 'Desconhecida'}`;
             questionText.textContent = currentQuestion.pergunta;
 
-            // --- Carrega opções ou afirmações baseado no tipo ---
-             if (currentQuestion.tipo === 'AG') {
-                 const affirmationsList = document.createElement('ol');
-                 affirmationsList.classList.add('affirmations-list');
-                 if (currentQuestion.afirmacoes && Array.isArray(currentQuestion.afirmacoes)) {
-                     currentQuestion.afirmacoes.forEach(affirmation => {
-                         const li = document.createElement('li');
-                         li.textContent = affirmation;
-                         affirmationsList.appendChild(li);
-                     });
-                     // Insere lista de afirmações *depois* do texto da pergunta
-                     questionText.after(affirmationsList);
-                 } else {
-                     console.warn(`Questão ${questionNum} (ID: ${currentQuestion.id}) é AG mas falta 'afirmacoes'.`);
-                 }
-                 // Carrega opções A-E (MC/AG/VF usam a mesma lógica de opções agora)
-                 createMcOptions(currentQuestion);
+            // --- Cria lista de afirmações/statements para AG ou VF ---
+            let statementsArray = null;
+            if (currentQuestion.tipo === 'AG' && currentQuestion.afirmacoes) {
+                statementsArray = currentQuestion.afirmacoes;
+            } else if (currentQuestion.tipo === 'VF' && currentQuestion.vfStatements) { // Verifica o novo campo
+                statementsArray = currentQuestion.vfStatements;
+            }
 
-             } else { // MC e VF carregam opções da mesma forma
-                 createMcOptions(currentQuestion);
-             }
+            if (statementsArray && Array.isArray(statementsArray)) {
+                const statementsList = document.createElement('ol');
+                statementsList.classList.add('statements-list'); // Classe genérica
+                statementsList.setAttribute('start', 'I'); // Inicia com I (CSS fará ser Roman)
+                statementsArray.forEach((statement) => {
+                    const li = document.createElement('li');
+                    li.textContent = statement; // O texto já está limpo no JS
+                    statementsList.appendChild(li);
+                });
+                // Insere lista *depois* do texto da pergunta
+                questionText.after(statementsList);
+            } else if (currentQuestion.tipo === 'AG' || currentQuestion.tipo === 'VF') {
+                console.warn(`Questão ${questionNum} (ID: ${currentQuestion.id}) é ${currentQuestion.tipo} mas falta array de afirmações/statements.`);
+                // Opcional: Inserir uma mensagem de erro onde a lista deveria estar
+            }
 
+            // Carrega opções A-E (funciona para MC, AG e VF agora)
+            createMcOptions(currentQuestion);
 
             // Atualiza texto do botão
             if (currentQuestionIndex === totalQuizQuestions - 1) {
@@ -236,9 +257,11 @@ document.addEventListener('DOMContentLoaded', () => {
             isCorrect: isCorrect
         };
 
-        // Adiciona afirmações se for tipo AG
+        // Adiciona afirmações específicas para AG e VF
         if (currentQuestion.tipo === 'AG') {
-            answerData.affirmations = currentQuestion.afirmacoes;
+            answerData.statements = currentQuestion.afirmacoes; // Usar nome genérico 'statements'
+        } else if (currentQuestion.tipo === 'VF') {
+            answerData.statements = currentQuestion.vfStatements; // Usar nome genérico 'statements'
         }
 
         userAnswers.push(answerData);
@@ -302,16 +325,17 @@ document.addEventListener('DOMContentLoaded', () => {
              }
 
 
-            // Adiciona afirmações se for AG
-            if (answer.type === 'AG' && answer.affirmations && Array.isArray(answer.affirmations)) {
-                const affirmationsList = document.createElement('ol');
-                affirmationsList.classList.add('review-affirmations');
-                answer.affirmations.forEach(affirmation => {
+            // Adiciona lista de afirmações/statements se for AG ou VF
+            if ((answer.type === 'AG' || answer.type === 'VF') && answer.statements && Array.isArray(answer.statements)) {
+                const statementsList = document.createElement('ol');
+                statementsList.classList.add('review-statements'); // Classe genérica
+                statementsList.setAttribute('start', 'I');
+                answer.statements.forEach(statement => {
                     const li = document.createElement('li');
-                    li.textContent = affirmation;
-                    affirmationsList.appendChild(li);
+                    li.textContent = statement;
+                    statementsList.appendChild(li);
                 });
-                reviewItem.appendChild(affirmationsList);
+                reviewItem.appendChild(statementsList);
             }
 
             // Mostra todas as opções
@@ -332,37 +356,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Função auxiliar para criar as opções na tela de revisão
-    function createReviewOption(container, letter, text, answerData) {
-        const optionP = document.createElement('div'); // Usar div para melhor controle
-        optionP.classList.add('review-option');
+    // Função auxiliar para criar as opções na tela de revisão (ajustada)
+    function createReviewOption(container, letter, optionText, answerData) {
+        const optionDiv = document.createElement('div');
+        optionDiv.classList.add('review-option');
 
-        // Texto da opção formatado (ex: "A) Texto da opção")
-        optionP.textContent = `${letter}) ${text}`;
+        // Texto da opção formatado (ex: "A) V, V, F, F, V")
+        optionDiv.textContent = `${letter}) ${optionText}`;
 
         const isUserAnswer = (letter === answerData.userAnswer);
         const isCorrectAnswer = (letter === answerData.correctAnswer);
 
         if (isCorrectAnswer) {
-            optionP.classList.add('correct');
+            optionDiv.classList.add('correct');
         }
 
         if (isUserAnswer) {
-             const indicator = document.createElement('span');
-             indicator.classList.add('user-answer-indicator');
-             indicator.textContent = ' (Sua Resposta)';
-             optionP.appendChild(indicator); // Adiciona o indicador
+            const indicator = document.createElement('span');
+            indicator.classList.add('user-answer-indicator');
+            indicator.textContent = ' (Sua Resposta)';
+            optionDiv.appendChild(indicator);
 
             if (!answerData.isCorrect) {
-                optionP.classList.add('incorrect', 'user-selected');
+                optionDiv.classList.add('incorrect', 'user-selected');
             } else {
-                 optionP.classList.add('user-selected'); // Marca como selecionado mesmo se correto
+                optionDiv.classList.add('user-selected');
             }
         }
 
-        container.appendChild(optionP);
+        container.appendChild(optionDiv);
     }
-
 
     // --- Iniciar ---
     initQuiz(); // Chama a função inicializadora
