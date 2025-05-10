@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de conceitos de gestão de projetos</title>
+    <title>Exame Simulado - Ciências Sociais</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Teste de conceitos de gestão de projetos</h1>
-            <div id="progress-container">
-                <p id="progress-text">Questão 1 de 100</p>
-                <progress id="progress-bar" value="0" max="100"></progress>
-            </div>
+            <h1>Exame Simulado - Ciências Sociais (50 Questões)</h1>
         </header>
 
-        <main id="quiz-area">
+        <section id="presentation-area">
+            <h2>Bem-vindo(a) ao Simulado!</h2>
+            <p>Este exame simulado foi elaborado para avaliar seus conhecimentos fundamentais nas principais áreas das Ciências Sociais. As questões abrangem temas de Antropologia, Economia, Epistemologia, Ciência Política, Psicologia Social, Sociologia e Geografia Humana.</p>
+            <p>Você encontrará diferentes formatos de questões, incluindo múltipla escolha (MC), verdadeiro ou falso (VF) e análise de afirmações em grupo (AG), exigindo tanto domínio conceitual quanto capacidade analítica.</p>
+            <p>Reflita com atenção, administre bem seu tempo e boa sorte!</p>
+            <button id="start-btn">Iniciar Teste</button>
+        </section>
+
+        <main id="quiz-area" class="hidden">
+            <div id="progress-container">
+                <p id="progress-text">Questão 1 de 50</p>
+                <progress id="progress-bar" value="0" max="50"></progress>
+            </div>
             <section class="question-card">
-                <h2 id="question-number">Questão 1</h2>
+                <p id="question-discipline" class="discipline-tag"></p>
                 <p id="question-text">Carregando pergunta...</p>
                 <div id="options-container" role="radiogroup" aria-labelledby="question-text">
                     <!-- Opções serão carregadas aqui pelo JavaScript -->
@@ -29,7 +37,7 @@
 
         <section id="results-area" class="hidden">
             <h2>Resultado Final</h2>
-            <p id="score-text">Você acertou X de 100 questões.</p>
+            <p id="score-text">Você acertou X de 50 questões.</p>
             <p id="percentage-text">Sua pontuação: Y%</p>
             <p id="level-text">Nível: Z</p>
             <div class="result-buttons">
@@ -51,10 +59,8 @@
 
     </div>
 
-  
-
-    <!-- Carrega as perguntas primeiro -->
-    <script src="questions.js"></script> 
+    <!-- Carrega as perguntas PRIMEIRO -->
+    <script src="questions.js"></script>
     <!-- Depois carrega a lógica do quiz -->
     <script src="script.js"></script>
 </body>
