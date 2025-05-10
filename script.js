@@ -1,9 +1,10 @@
-// script.js - Updated for MC, VF, AG questions
+// script.js
 document.addEventListener('DOMContentLoaded', () => {
     // --- Elementos do DOM ---
     const progressText = document.getElementById('progress-text');
     const progressBar = document.getElementById('progress-bar');
     const questionNumber = document.getElementById('question-number');
+    const questionDiscipline = document.getElementById('question-discipline'); // Elemento para disciplina
     const questionText = document.getElementById('question-text');
     const optionsContainer = document.getElementById('options-container');
     const nextBtn = document.getElementById('next-btn');
@@ -18,12 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const reviewContent = document.getElementById('review-content');
     const backToResultsBtn = document.getElementById('back-to-results-btn');
     const restartFromReviewBtn = document.getElementById('restart-from-review-btn');
+    const presentationArea = document.getElementById('presentation-area'); // Nova área
+    const startBtn = document.getElementById('start-btn'); // Novo botão
+
+    // --- Configurações do Quiz ---
+    // Assumindo que 'questions' já está carregado globalmente e corrigido (100 únicas)
+    let totalQuizQuestions = 0; // Será definido em initQuiz
 
     // --- Estado do Quiz ---
     let currentQuestionIndex = 0;
     let score = 0;
-    let quizData = []; // Array para guardar as perguntas (possivelmente embaralhadas)
-    let userAnswers = []; // Guarda { questionIndex, type, questionText, [affirmations], options/tfOptions, userAnswer, correctAnswer, isCorrect }
+    let quizData = []; // Será preenchido a partir do 'questions' global
+    let userAnswers = []; // Guarda dados para revisão
 
     // --- Funções ---
 
@@ -35,20 +42,65 @@ document.addEventListener('DOMContentLoaded', () => {
         return array;
     }
 
+    // Adicione esta função após a função shuffleArray existente
+    function selectQuestions(allQuestions) {
+        // Separar questões por área
+        const principalAreas = ['Antropologia', 'Ciencia Politica', 'Sociologia'];
+        const principalQuestions = allQuestions.filter(q => principalAreas.includes(q.disciplina));
+        const otherQuestions = allQuestions.filter(q => !principalAreas.includes(q.disciplina));
+
+        // Embaralhar as questões de cada grupo
+        const shuffledPrincipal = shuffleArray([...principalQuestions]);
+        const shuffledOthers = shuffleArray([...otherQuestions]);
+
+        // Selecionar 35 questões das áreas principais
+        const selectedPrincipal = shuffledPrincipal.slice(0, 35);
+        
+        // Selecionar 15 questões das outras áreas
+        const selectedOthers = shuffledOthers.slice(0, 15);
+
+        // Combinar e embaralhar novamente
+        return shuffleArray([...selectedPrincipal, ...selectedOthers]);
+    }
+
+    // Modifique a função initQuiz para usar a nova seleção
+    function initQuiz() {
+        if (typeof questions === 'undefined' || !Array.isArray(questions) || questions.length === 0) {
+            console.error("Erro: A variável global 'questions' não foi encontrada, está vazia ou não é um array.");
+            presentationArea.innerHTML = `<h2>Erro ao Carregar Perguntas</h2><p>Não foi possível encontrar os dados das perguntas. Verifique se o arquivo <code>questions.js</code> está na pasta correta, foi incluído no HTML antes de <code>script.js</code> e não contém erros de sintaxe.</p>`;
+            presentationArea.classList.remove('hidden'); // Garante que a área de erro seja visível
+            quizArea.classList.add('hidden');
+            resultsArea.classList.add('hidden');
+            reviewArea.classList.add('hidden');
+            return; // Impede a continuação
+        }
+
+        // Seleciona 50 questões com a distribuição desejada
+        quizData = selectQuestions(questions);
+        totalQuizQuestions = quizData.length; // Agora será 50
+        progressBar.max = totalQuizQuestions;
+
+        // Resto do código permanece igual...
+        presentationArea.classList.remove('hidden');
+        quizArea.classList.add('hidden');
+        resultsArea.classList.add('hidden');
+        reviewArea.classList.add('hidden');
+
+        startBtn.addEventListener('click', startQuiz);
+        nextBtn.addEventListener('click', handleNextQuestion);
+        restartBtn.addEventListener('click', () => location.reload());
+        reviewBtn.addEventListener('click', showReview);
+        backToResultsBtn.addEventListener('click', showResults);
+        restartFromReviewBtn.addEventListener('click', () => location.reload());
+    }
+
     function startQuiz() {
         currentQuestionIndex = 0;
         score = 0;
         userAnswers = [];
-        // Ensure questions are loaded before shuffling
-        if (typeof questions !== 'undefined' && questions.length > 0) {
-            quizData = shuffleArray([...questions]); // Use loaded questions
-             progressBar.max = quizData.length; // Set max progress based on actual questions loaded
-        } else {
-            console.error("Questions not loaded or empty!");
-            questionText.textContent = "Erro: Perguntas não carregadas.";
-            return; // Stop quiz if no questions
-        }
+        shuffleArray(quizData); // Embaralha as 100 perguntas para cada tentativa
 
+        presentationArea.classList.add('hidden');
         quizArea.classList.remove('hidden');
         resultsArea.classList.add('hidden');
         reviewArea.classList.add('hidden');
@@ -58,46 +110,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadQuestion() {
         nextBtn.disabled = true;
-        optionsContainer.innerHTML = ''; // Clear previous options/affirmations
+        optionsContainer.innerHTML = ''; // Limpa opções
 
-        if (currentQuestionIndex < quizData.length) {
+        // Remove lista de afirmações/statements se existir (de questão AG/VF anterior)
+        const oldList = quizArea.querySelector('.statements-list'); // Usar classe genérica
+        if (oldList) {
+            oldList.remove();
+        }
+
+        if (currentQuestionIndex < totalQuizQuestions) {
             const currentQuestion = quizData[currentQuestionIndex];
             const questionNum = currentQuestionIndex + 1;
 
-            // Update progress
-            progressText.textContent = `Questão ${questionNum} de ${quizData.length}`;
+            // Atualiza apenas o progresso na barra superior
+            progressText.textContent = `Questão ${questionNum} de ${totalQuizQuestions}`;
             progressBar.value = questionNum;
 
-            // Display question number and text
-            questionNumber.textContent = `Questão ${questionNum}`;
+            // Remove atualização do número da questão
+            // questionNumber.textContent = questionNum; // <-- Remover esta linha
+            
+            questionDiscipline.textContent = currentQuestion.disciplina;
             questionText.textContent = currentQuestion.pergunta;
 
-            // --- Load based on question type ---
-            if (currentQuestion.tipo === 'AG') {
-                // Display affirmations for Group Affirmation questions
-                const affirmationsList = document.createElement('ol');
-                affirmationsList.classList.add('affirmations-list');
-                currentQuestion.afirmacoes.forEach(affirmation => {
-                    const li = document.createElement('li');
-                    li.textContent = affirmation;
-                    affirmationsList.appendChild(li);
-                });
-                // Insert affirmations *before* the options container within the card
-                questionText.after(affirmationsList); // Place affirmations after question text
-
-                // Load A-E options (standard MC logic)
-                createMcOptions(currentQuestion);
-
-            } else if (currentQuestion.tipo === 'VF') {
-                // Load True/False options
-                createTfOptions(currentQuestion);
-
-            } else { // Default to Multiple Choice (MC)
-                createMcOptions(currentQuestion);
+            // --- Cria lista de afirmações/statements para AG ou VF ---
+            let statementsArray = null;
+            if (currentQuestion.tipo === 'AG' && currentQuestion.afirmacoes) {
+                statementsArray = currentQuestion.afirmacoes;
+            } else if (currentQuestion.tipo === 'VF' && currentQuestion.vfStatements) { // Verifica o novo campo
+                statementsArray = currentQuestion.vfStatements;
             }
 
-            // Update next button text
-            if (currentQuestionIndex === quizData.length - 1) {
+            if (statementsArray && Array.isArray(statementsArray)) {
+                const statementsList = document.createElement('ol');
+                statementsList.classList.add('statements-list'); // Classe genérica
+                statementsList.setAttribute('start', 'I'); // Inicia com I (CSS fará ser Roman)
+                statementsArray.forEach((statement) => {
+                    const li = document.createElement('li');
+                    li.textContent = statement; // O texto já está limpo no JS
+                    statementsList.appendChild(li);
+                });
+                // Insere lista *depois* do texto da pergunta
+                questionText.after(statementsList);
+            } else if (currentQuestion.tipo === 'AG' || currentQuestion.tipo === 'VF') {
+                console.warn(`Questão ${questionNum} (ID: ${currentQuestion.id}) é ${currentQuestion.tipo} mas falta array de afirmações/statements.`);
+                // Opcional: Inserir uma mensagem de erro onde a lista deveria estar
+            }
+
+            // Carrega opções A-E (funciona para MC, AG e VF agora)
+            createMcOptions(currentQuestion);
+
+            // Atualiza texto do botão
+            if (currentQuestionIndex === totalQuizQuestions - 1) {
                 nextBtn.textContent = 'Ver Resultado';
             } else {
                 nextBtn.textContent = 'Próxima Questão';
@@ -109,39 +172,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createMcOptions(question) {
-        const optionLetters = 'ABCDE'; // Assuming max 5 options for MC/AG
-        question.opcoes.forEach((option, index) => {
-            if (index >= optionLetters.length) return; // Safety check
-            const letter = optionLetters[index];
-            const optionId = `q${currentQuestionIndex}_opt${letter}`;
-            const radioName = `q${currentQuestionIndex}_options`;
+        const optionLetters = 'ABCDE'; // Para MC e AG
+        const radioName = `q${currentQuestionIndex}_options`;
 
-            createRadioOption(letter, option, optionId, radioName);
+        if (!question.opcoes || !Array.isArray(question.opcoes)) {
+             console.error(`Erro: Questão ${currentQuestionIndex + 1} (ID: ${question.id}) não possui 'opcoes' válidas.`);
+             optionsContainer.textContent = "Erro: Opções não encontradas para esta questão.";
+             return;
+        }
+
+        question.opcoes.forEach((optionText, index) => {
+            let valueLetter = '';
+            // Determina a letra/valor da opção
+            if (question.tipo === 'VF') {
+                 // Para VF, o valor é a própria string da opção (ex: "V, V, F, F, V")
+                 // mas o label visível deve ser A), B), etc.
+                 if (index < optionLetters.length) {
+                     valueLetter = optionLetters[index]; // O *valor* selecionado será A, B, C...
+                 } else {
+                     return; // Limita a 5 opções visuais mesmo para VF
+                 }
+            } else { // Para MC e AG, a letra é o valor e o índice corresponde
+                 if (index < optionLetters.length) {
+                     valueLetter = optionLetters[index];
+                 } else {
+                      return; // Limita a 5 opções
+                 }
+            }
+
+            const optionId = `q${currentQuestionIndex}_opt${valueLetter}`; // ID usa a letra
+            createRadioOption(valueLetter, `${valueLetter}) ${optionText}`, optionId, radioName); // Label visual inclui letra
         });
     }
 
-    function createTfOptions(question) {
-        const tfOptions = [ { letter: 'V', text: 'Verdadeiro' }, { letter: 'F', text: 'Falso' } ];
-        const radioName = `q${currentQuestionIndex}_options`; // Can reuse name if options are cleared
-
-        tfOptions.forEach(opt => {
-            const optionId = `q${currentQuestionIndex}_opt${opt.letter}`;
-            createRadioOption(opt.letter, opt.text, optionId, radioName);
-        });
-    }
-
-    function createRadioOption(valueLetter, labelText, optionId, radioName) {
+    // Função auxiliar unificada para criar radio buttons
+    function createRadioOption(value, labelText, optionId, radioName) {
         const div = document.createElement('div');
+        div.classList.add('option-item'); // Classe para estilização se necessário
 
         const input = document.createElement('input');
         input.type = 'radio';
         input.id = optionId;
         input.name = radioName;
-        input.value = valueLetter;
+        input.value = value; // O valor é A, B, C, D ou E
 
         const label = document.createElement('label');
         label.htmlFor = optionId;
-        label.textContent = labelText;
+        label.textContent = labelText; // Texto do label (ex: "A) Texto da opção")
 
         input.addEventListener('change', () => {
             nextBtn.disabled = false;
@@ -155,48 +232,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleNextQuestion() {
         const selectedOptionInput = optionsContainer.querySelector('input[type="radio"]:checked');
-        if (!selectedOptionInput) return;
+        if (!selectedOptionInput) return; // Não faz nada se nada foi selecionado
 
-        const userAnswer = selectedOptionInput.value; // 'A', 'B', 'C', 'D', 'E', 'V', or 'F'
+        const userAnswerValue = selectedOptionInput.value; // Será A, B, C, D ou E
         const currentQuestion = quizData[currentQuestionIndex];
-        const correctAnswer = currentQuestion.resposta.toUpperCase(); // Ensure uppercase
-        const isCorrect = userAnswer === correctAnswer;
+        const correctAnswerLetter = currentQuestion.resposta.toUpperCase(); // Resposta correta (A, B, C, D ou E)
+
+        const isCorrect = userAnswerValue === correctAnswerLetter;
 
         if (isCorrect) {
             score++;
         }
 
-        // Prepare answer data for review
+        // Prepara dados para revisão
         const answerData = {
             questionIndex: currentQuestionIndex,
+            id: currentQuestion.id, // Guarda ID original
             type: currentQuestion.tipo,
+            disciplina: currentQuestion.disciplina || 'Desconhecida',
             questionText: currentQuestion.pergunta,
-            userAnswer: userAnswer,
-            correctAnswer: correctAnswer,
+            contexto: currentQuestion.contexto || '',
+            options: currentQuestion.opcoes, // Guarda todas as opções
+            userAnswer: userAnswerValue, // A letra que o usuário selecionou (A, B, C, D, E)
+            correctAnswer: correctAnswerLetter, // A letra correta (A, B, C, D, E)
             isCorrect: isCorrect
         };
 
-        // Add specific data based on type for review
+        // Adiciona afirmações específicas para AG e VF
         if (currentQuestion.tipo === 'AG') {
-            answerData.affirmations = currentQuestion.afirmacoes;
-            answerData.options = currentQuestion.opcoes; // A-E descriptions
+            answerData.statements = currentQuestion.afirmacoes; // Usar nome genérico 'statements'
         } else if (currentQuestion.tipo === 'VF') {
-            // Store the text for review display
-            answerData.tfOptions = { V: 'Verdadeiro', F: 'Falso' };
-        } else { // MC
-            answerData.options = currentQuestion.opcoes;
+            answerData.statements = currentQuestion.vfStatements; // Usar nome genérico 'statements'
         }
 
         userAnswers.push(answerData);
 
-        // Move to next question or results
+        // Vai para próxima questão ou resultados
         currentQuestionIndex++;
-        if (currentQuestionIndex < quizData.length) {
-            // Remove affirmations list if it exists from previous AG question
-            const oldAffirmations = quizArea.querySelector('.affirmations-list');
-             if (oldAffirmations) {
-                 oldAffirmations.remove();
-             }
+        if (currentQuestionIndex < totalQuizQuestions) {
             loadQuestion();
         } else {
             showResults();
@@ -208,13 +281,12 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsArea.classList.remove('hidden');
         reviewArea.classList.add('hidden');
 
-        const totalQuestions = quizData.length;
-        const percentage = totalQuestions > 0 ? ((score / totalQuestions) * 100).toFixed(1) : 0;
+        const percentage = totalQuizQuestions > 0 ? ((score / totalQuizQuestions) * 100).toFixed(1) : 0;
 
-        scoreText.textContent = `Você acertou ${score} de ${totalQuestions} questões.`;
+        scoreText.textContent = `Você acertou ${score} de ${totalQuizQuestions} questões.`;
         percentageText.textContent = `Sua pontuação: ${percentage}%`;
 
-        // Determine level (adjust thresholds as needed)
+        // Determina nível (ajuste os limites conforme necessário)
         let level = "Pontuação abaixo do nível Associate.";
         if (percentage >= 80) {
             level = "Nível: Master (Lembre-se que o nível Master oficial requer 2 exames especialistas)";
@@ -233,78 +305,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const optionLetters = 'ABCDE';
 
-        userAnswers.forEach((answer, index) => {
+        // Ordena as respostas pela ordem original em que apareceram no quiz atual
+        userAnswers.sort((a, b) => a.questionIndex - b.questionIndex);
+
+        userAnswers.forEach((answer, displayIndex) => {
             const reviewItem = document.createElement('div');
             reviewItem.classList.add('review-item');
 
             const questionTitle = document.createElement('p');
-            questionTitle.innerHTML = `<strong>Questão ${index + 1} (${answer.type}):</strong> ${answer.questionText}`;
+            // Inclui disciplina e tipo na revisão
+            questionTitle.innerHTML = `<strong>Questão ${displayIndex + 1} (${answer.disciplina} - ${answer.type}):</strong><br>${answer.questionText}`; // Quebra de linha para melhor leitura
             reviewItem.appendChild(questionTitle);
 
-            // --- Display based on question type ---
-            if (answer.type === 'AG') {
-                // Display affirmations
-                const affirmationsList = document.createElement('ol');
-                affirmationsList.classList.add('review-affirmations'); // Style differently if needed
-                answer.affirmations.forEach(affirmation => {
+             // Adiciona contexto se existir
+             if (answer.contexto) {
+                 const contextP = document.createElement('p');
+                 contextP.classList.add('review-context'); // Pode estilizar se quiser
+                 contextP.innerHTML = `<em>Contexto: ${answer.contexto}</em>`;
+                 reviewItem.appendChild(contextP);
+             }
+
+
+            // Adiciona lista de afirmações/statements se for AG ou VF
+            if ((answer.type === 'AG' || answer.type === 'VF') && answer.statements && Array.isArray(answer.statements)) {
+                const statementsList = document.createElement('ol');
+                statementsList.classList.add('review-statements'); // Classe genérica
+                statementsList.setAttribute('start', 'I');
+                answer.statements.forEach(statement => {
                     const li = document.createElement('li');
-                    li.textContent = affirmation;
-                    affirmationsList.appendChild(li);
+                    li.textContent = statement;
+                    statementsList.appendChild(li);
                 });
-                reviewItem.appendChild(affirmationsList);
-
-                // Display A-E options (MC style)
-                answer.options.forEach((optionText, optIndex) => {
-                     if (optIndex >= optionLetters.length) return;
-                     const letter = optionLetters[optIndex];
-                     createReviewOption(reviewItem, letter, optionText, answer);
-                });
-
-            } else if (answer.type === 'VF') {
-                // Display True/False options
-                 createReviewOption(reviewItem, 'V', answer.tfOptions.V, answer);
-                 createReviewOption(reviewItem, 'F', answer.tfOptions.F, answer);
-
-            } else { // MC
-                // Display A-E options
-                answer.options.forEach((optionText, optIndex) => {
-                     if (optIndex >= optionLetters.length) return;
-                     const letter = optionLetters[optIndex];
-                     createReviewOption(reviewItem, letter, optionText, answer);
-                });
+                reviewItem.appendChild(statementsList);
             }
+
+            // Mostra todas as opções
+            if (answer.options && Array.isArray(answer.options)) {
+                 answer.options.forEach((optionText, optIndex) => {
+                      if (optIndex >= optionLetters.length) return; // Limita a 5 opções
+                      const letter = optionLetters[optIndex];
+                      createReviewOption(reviewItem, letter, optionText, answer);
+                 });
+            } else {
+                 const errorP = document.createElement('p');
+                 errorP.textContent = "Erro: Opções desta questão não foram salvas para revisão.";
+                 reviewItem.appendChild(errorP);
+            }
+
 
             reviewContent.appendChild(reviewItem);
         });
     }
 
-    // Helper function for creating review options
-    function createReviewOption(container, letter, text, answerData) {
-        const optionP = document.createElement('span');
-        optionP.classList.add('review-option');
-        // For MC/AG, add letter prefix. For VF, just show text.
-        optionP.textContent = (answerData.type === 'VF') ? text : `${letter}) ${text}`;
+    // Função auxiliar para criar as opções na tela de revisão (ajustada)
+    function createReviewOption(container, letter, optionText, answerData) {
+        const optionDiv = document.createElement('div');
+        optionDiv.classList.add('review-option');
 
-        if (letter === answerData.correctAnswer) {
-            optionP.classList.add('correct');
+        // Texto da opção formatado (ex: "A) V, V, F, F, V")
+        optionDiv.textContent = `${letter}) ${optionText}`;
+
+        const isUserAnswer = (letter === answerData.userAnswer);
+        const isCorrectAnswer = (letter === answerData.correctAnswer);
+
+        if (isCorrectAnswer) {
+            optionDiv.classList.add('correct');
         }
-        if (letter === answerData.userAnswer) {
-            optionP.classList.add('user-selected');
+
+        if (isUserAnswer) {
+            const indicator = document.createElement('span');
+            indicator.classList.add('user-answer-indicator');
+            indicator.textContent = ' (Sua Resposta)';
+            optionDiv.appendChild(indicator);
+
             if (!answerData.isCorrect) {
-                optionP.classList.add('incorrect');
+                optionDiv.classList.add('incorrect', 'user-selected');
+            } else {
+                optionDiv.classList.add('user-selected');
             }
         }
-        container.appendChild(optionP);
+
+        container.appendChild(optionDiv);
     }
 
+    // Localize onde a disciplina é atualizada (geralmente na função que mostra a questão)
+    function showQuestion(question) {
+        // ...existing code...
+        const disciplineTag = document.getElementById('question-discipline');
+        disciplineTag.textContent = question.disciplina; // Removes "Disciplina: " prefix
+        disciplineTag.setAttribute('data-discipline', question.disciplina);
+        // ...existing code...
+    }
 
-    // --- Event Listeners ---
-    nextBtn.addEventListener('click', handleNextQuestion);
-    restartBtn.addEventListener('click', startQuiz);
-    reviewBtn.addEventListener('click', showReview);
-    backToResultsBtn.addEventListener('click', showResults);
-    restartFromReviewBtn.addEventListener('click', startQuiz);
-
-    // --- Iniciar o Quiz ---
-    startQuiz();
+    // --- Iniciar ---
+    initQuiz(); // Chama a função inicializadora
 });
